@@ -50,6 +50,7 @@ usuario = {
 
 console.log(usuario);
 
+/*
 type Contato = {
     email: string,
     telefone: string
@@ -61,6 +62,7 @@ type Pessoa = {
     idade: number,
     contato: Contato //utilização de TIPAGEM
 };
+*/
 
 /*
 
@@ -84,3 +86,17 @@ Precisamos armazenar informações sobre diferentes produtos disponíveis na loj
     Em seguida, imprima todas as variáveis e propriedades do objeto produto usando console.log.
 
 */
+
+let produto: {
+    nome: string,
+    preco: number,
+    estoque: number, 
+    categorias: string[]
+}
+
+produto = {
+    nome: "Geladeira",
+    preco: 3006.43,
+    estoque: 2, 
+    categorias: ["Linha Branca"]
+}
