@@ -103,26 +103,29 @@ switch(expression) {
 
 function calculadora(numero1:number, numero2:number, operacao:string){
     switch(operacao){
-        case "+": {
+        case "soma": {
             return numero1 + numero2;
             break;
         }
-        case "-": {
+        case "subtracao": {
             return numero1 - numero2;
             break;
         }
-        case "/": {
+        case "multiplicacao": {
             return numero1 / numero2;
             break;
         }
-        case "*": {
+        case "divisao": {
             return numero1 * numero2;
             break;
         }
     }
 }
 
-calculadora(10, 5, "+");
+console.log(calculadora(5, 3, "soma")); // Saída esperada: 8
+console.log(calculadora(10, 2, "subtracao")); // Saída esperada: 8
+console.log(calculadora(4, 5, "multiplicacao")); // Saída esperada: 20
+console.log(calculadora(10, 2, "divisao")); // Saída esperada: 5
 
 
 /*
