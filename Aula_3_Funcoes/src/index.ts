@@ -161,4 +161,4 @@ function verificarPalindromo(auxiliar:string): boolean {
 console.log(verificarPalindromo("arara")); // Saída esperada: true
 console.log(verificarPalindromo("reviver")); // Saída esperada: true
 console.log(verificarPalindromo("banana")); // Saída esperada: false
-console.log(verificarPalindromo("reconhecer")); // Saída esperada: true
+console.log(verificarPalindromo("reconhecer")); // Saída esperada: false
