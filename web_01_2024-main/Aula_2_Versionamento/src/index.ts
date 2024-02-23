@@ -26,17 +26,29 @@ let idade: number = 19;
 let email: string  = "mariaabrami@gmail.com";
 let isAtivo: boolean = true;
 
-type usuario = {
-    nome: string;
-    sobrenome: string;
-    idade: number;
+let usuario: {
+    nome: string,
+    sobrenome: string,
+    idade: number,
     contato: {
-        email: string;
-        telefone: string;
+        email: string,
+        telefone: string,
     }
 }
 
-console.log(nomeCompleto, idade, email, isAtivo);
+usuario = {
+    nome: "Malu",
+    sobrenome: "Abrami",
+    idade: 19,
+    contato: {
+        email: "maria@gmail.com",
+        telefone: "1312949184",
+    }
+}
+
+// Declarar usa-se ":" e para atribuir valor usa-se "="
+
+console.log(usuario);
 
 /*
 
