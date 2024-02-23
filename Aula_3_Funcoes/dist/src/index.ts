@@ -101,6 +101,29 @@ switch(expression) {
 
 */
 
+function calculadora(numero1:number, numero2:number, operacao:string){
+    switch(operacao){
+        case "+": {
+            return numero1 + numero2;
+            break;
+        }
+        case "-": {
+            return numero1 - numero2;
+            break;
+        }
+        case "/": {
+            return numero1 / numero2;
+            break;
+        }
+        case "*": {
+            return numero1 * numero2;
+            break;
+        }
+    }
+}
+
+calculadora(10, 5, "+");
+
 
 /*
 Exercício 2: Verificador de Palíndromo
