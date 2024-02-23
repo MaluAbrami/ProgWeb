@@ -21,10 +21,10 @@ Vamos criar variáveis e objetos para representar diferentes tipos de dados rela
     Em seguida, imprima todas as variáveis e propriedades do objeto usuario usando console.log.
 
 */
-let nomeCompleto: string = "Maria Luiza Abrami";
-let idade: number = 19;
-let email: string  = "mariaabrami@gmail.com";
-let isAtivo: boolean = true;
+let nomeCompleto: string;
+let idade: number;
+let email: string;
+let isAtivo: boolean;
 
 let usuario: {
     nome: string,
