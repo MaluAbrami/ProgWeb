@@ -50,6 +50,18 @@ usuario = {
 
 console.log(usuario);
 
+type Contato = {
+    email: string,
+    telefone: string
+};
+
+type Pessoa = {
+    nome: string,
+    sobrenome: string,
+    idade: number,
+    contato: Contato //utilização de TIPAGEM
+};
+
 /*
 
 Exercício:
