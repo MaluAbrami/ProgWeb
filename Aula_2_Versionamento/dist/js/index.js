@@ -38,6 +38,31 @@ usuario = {
 };
 // Declarar usa-se ":" e para atribuir valor usa-se "="
 console.log(usuario);
+function calculadora(numero1, numero2, operacao) {
+    let result = 0;
+    switch (operacao) {
+        case "soma": {
+            result = numero1 + numero2;
+            break;
+        }
+        case "subtracao": {
+            result = numero1 - numero2;
+            break;
+        }
+        case "multiplicacao": {
+            result = numero1 / numero2;
+            break;
+        }
+        case "divisao": {
+            result = numero1 * numero2;
+        }
+    }
+    return result;
+}
+console.log(calculadora(5, 3, "soma")); // Saída esperada: 8
+console.log(calculadora(10, 2, "subtracao")); // Saída esperada: 8
+console.log(calculadora(4, 5, "multiplicacao")); // Saída esperada: 20
+console.log(calculadora(10, 2, "divisao")); // Saída esperada: 5
 /*
 type Contato = {
     email: string,

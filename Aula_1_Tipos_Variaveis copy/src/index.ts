@@ -101,25 +101,26 @@ switch(expression) {
 
 */
 
-function calculadora(numero1:number, numero2:number, operacao:string){
+function calculadora(numero1:number, numero2:number, operacao:string): number {
+    let result: number=0;
     switch(operacao){
         case "soma": {
-            return numero1 + numero2;
+            result = numero1 + numero2;
             break;
         }
         case "subtracao": {
-            return numero1 - numero2;
+            result = numero1 - numero2;
             break;
         }
         case "multiplicacao": {
-            return numero1 / numero2;
+            result = numero1 / numero2;
             break;
         }
         case "divisao": {
-            return numero1 * numero2;
-            break;
+            result = numero1 * numero2;
         }
     }
+    return result;
 }
 
 console.log(calculadora(5, 3, "soma")); // Saída esperada: 8
