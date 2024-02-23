@@ -30,7 +30,18 @@ type usuario = {
     nome: string;
     sobrenome: string;
     idade: number;
+    contato: {
+        email: string;
+        telefone: string;
+    }
 }
+
+nomeCompleto = "Maria Luiza Abrami";
+idade = 19;
+email = "mariaabrami@gmail.com";
+isAtivo = true;
+
+console.log(nomeCompleto, idade, email, isAtivo);
 
 /*
 
