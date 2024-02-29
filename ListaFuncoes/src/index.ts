@@ -9,3 +9,13 @@ function maiorNumero(...lista:number[]):number {
     return maior;
 }
 */
+function parOuImpar(num:number):boolean {
+    if(num % 2 == 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+console.log(parOuImpar(4));
