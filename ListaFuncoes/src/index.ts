@@ -1,14 +1,15 @@
-/* ARRUMAR A PARTE DO TAMANHO DO ARRAY
 function maiorNumero(...lista:number[]):number {
     let maior = 0;
-    for(let i=0; i <= lista[...]; i++){
+    for(let i=0; i < lista.length; i++){
         if(maior < lista[i]){
             maior = lista[i];
         }
     }
     return maior;
 }
-*/
+
+console.log(1, 5, 8, 10, 15, 103);
+
 function parOuImpar(num:number):boolean {
     if(num % 2 == 0){
         return true;
@@ -19,3 +20,4 @@ function parOuImpar(num:number):boolean {
 }
 
 console.log(parOuImpar(4));
+
