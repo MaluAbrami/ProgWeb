@@ -1,3 +1,4 @@
+"use strict";
 function maiorNumero(...lista) {
     let maior = 0;
     for (let i = 0; i < lista.length; i++) {
