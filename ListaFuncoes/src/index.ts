@@ -31,3 +31,8 @@ function calcularMedia(...notas:number[]):number{
 
 console.log(calcularMedia(6, 7.4, 10, 4.2, 3));
 
+function aumentarLetras(palavra:string):string {
+    return palavra.toUpperCase();
+}
+
+console.log(aumentarLetras('malu'));

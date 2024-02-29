@@ -26,3 +26,7 @@ function calcularMedia(...notas) {
     return soma / notas.length;
 }
 console.log(calcularMedia(6, 7.4, 10, 4.2, 3));
+function aumentarLetras(palavra) {
+    return palavra.toUpperCase();
+}
+console.log(aumentarLetras('malu'));
