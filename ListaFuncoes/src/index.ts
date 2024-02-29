@@ -21,3 +21,12 @@ function parOuImpar(num:number):boolean {
 
 console.log(parOuImpar(4));
 
+function calcularMedia(...notas:number[]):number{
+    let soma=0;
+    for(let i=0; i<notas.length; i++){
+        soma += notas[i];
+    }
+    return soma / notas.length;
+}
+
+console.log(calcularMedia(6, 7.4, 10, 4.2, 3));
