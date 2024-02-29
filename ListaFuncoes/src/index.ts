@@ -8,7 +8,7 @@ function maiorNumero(...lista:number[]):number {
     return maior;
 }
 
-console.log(1, 5, 8, 10, 15, 103);
+console.log(maiorNumero(1, 5, 8, 10, 15, 103));
 
 function parOuImpar(num:number):boolean {
     if(num % 2 == 0){
