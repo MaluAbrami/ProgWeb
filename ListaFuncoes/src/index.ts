@@ -36,3 +36,29 @@ function aumentarLetras(palavra:string):string {
 }
 
 console.log(aumentarLetras('malu'));
+
+function numeroPrimo(numero:number):boolean { //Para ser um número primo ele precisar ser divísivel apenas por 1 e por ele próprio. Ex: 2, 3, 5, 7, etc...
+    let aux = 0;
+    for(let i=2; i<numero; i++){
+        if(numero == 2){
+            aux += 0;
+        }
+        else if(numero % i != 0){
+            aux += 0;
+        }
+        else{
+            aux += 1;
+        }
+    }
+
+    if(aux > 0){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+console.log(numeroPrimo(29));
+
+

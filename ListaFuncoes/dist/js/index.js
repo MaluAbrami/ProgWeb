@@ -30,3 +30,24 @@ function aumentarLetras(palavra) {
     return palavra.toUpperCase();
 }
 console.log(aumentarLetras('malu'));
+function numeroPrimo(numero) {
+    let aux = 0;
+    for (let i = 2; i < numero; i++) {
+        if (numero == 2) {
+            aux += 0;
+        }
+        else if (numero % i != 0) {
+            aux += 0;
+        }
+        else {
+            aux += 1;
+        }
+    }
+    if (aux > 0) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+console.log(numeroPrimo(29));
