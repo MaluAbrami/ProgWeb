@@ -51,3 +51,10 @@ function numeroPrimo(numero) {
     }
 }
 console.log(numeroPrimo(29));
+function inverterArray(array) {
+    return array.reverse();
+}
+const array1 = [1, 2, 3, 4, 5];
+const array2 = ['a', 'b', 'c', 'd', 'e'];
+console.log('Array de números invertido: ', inverterArray(array1));
+console.log('Array de strings invertido: ', inverterArray(array2));

@@ -61,4 +61,12 @@ function numeroPrimo(numero:number):boolean { //Para ser um número primo ele pr
 
 console.log(numeroPrimo(29));
 
+function inverterArray(array: any[]){
+    return array.reverse();
+}
 
+const array1: number[] = [1, 2, 3, 4, 5];
+const array2: string[] = ['a', 'b', 'c', 'd', 'e'];
+
+console.log('Array de números invertido: ', inverterArray(array1));
+console.log('Array de strings invertido: ', inverterArray(array2));
