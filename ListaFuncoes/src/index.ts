@@ -82,3 +82,9 @@ function aumentoPercentual(valor:number, porcentagem:number):number {
 
 console.log('100 acrescido de 50%: ', aumentoPercentual(100, 0.5));
 console.log('100 acrescido de 20%: ', aumentoPercentual(100, 20));
+
+function inverterString(palavra:string):string {
+    return palavra.split('').reverse().join(''); // Converte a string em um array de caracteres, inverte e converte de volta para string
+}
+
+console.log('Palavra antes da inversão "Malu" e depois: ', inverterString('Malu'));
