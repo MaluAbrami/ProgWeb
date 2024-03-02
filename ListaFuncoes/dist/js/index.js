@@ -82,3 +82,11 @@ function somarPares(...numeros) {
     return soma;
 }
 console.log(somarPares(2, 4, 6, 7, 9, 11, 14));
+function calcularFatorial(numero) {
+    let fatorial = 1;
+    for (let i = numero; i > 0; i--) {
+        fatorial *= i;
+    }
+    return fatorial;
+}
+console.log('O fatorial de 10 é: ', calcularFatorial(10));
