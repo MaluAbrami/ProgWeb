@@ -72,3 +72,13 @@ function inverterString(palavra) {
     return palavra.split('').reverse().join(''); // Converte a string em um array de caracteres, inverte e converte de volta para string
 }
 console.log('Palavra antes da inversão "Malu" e depois: ', inverterString('Malu'));
+function somarPares(...numeros) {
+    let soma = 0;
+    for (let i = 0; i < numeros.length; i++) {
+        if (numeros[i] % 2 == 0) {
+            soma += numeros[i];
+        }
+    }
+    return soma;
+}
+console.log(somarPares(2, 4, 6, 7, 9, 11, 14));

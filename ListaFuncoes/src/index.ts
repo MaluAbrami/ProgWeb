@@ -88,3 +88,15 @@ function inverterString(palavra:string):string {
 }
 
 console.log('Palavra antes da inversão "Malu" e depois: ', inverterString('Malu'));
+
+function somarPares(...numeros:number[]):number {
+    let soma=0;
+    for(let i=0; i<numeros.length; i++){
+        if(numeros[i] % 2 == 0){
+            soma += numeros[i];
+        }
+    }
+    return soma;
+}
+
+console.log(somarPares(2, 4, 6, 7, 9, 11, 14));
