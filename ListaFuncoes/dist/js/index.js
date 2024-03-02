@@ -58,3 +58,13 @@ const array1 = [1, 2, 3, 4, 5];
 const array2 = ['a', 'b', 'c', 'd', 'e'];
 console.log('Array de números invertido: ', inverterArray(array1));
 console.log('Array de strings invertido: ', inverterArray(array2));
+function aumentoPercentual(valor, porcentagem) {
+    if (porcentagem <= 1) { //CASO A PORCENTAGEM SEJA DADA ENTRE 0 E 1
+        return valor + (valor * porcentagem);
+    }
+    else { //CASO A PORCENTAGEM SEJA DADA COMO UM NUMERO INTEIRO ENTRE 0 E 100
+        return valor + (valor * (porcentagem / 100));
+    }
+}
+console.log('100 acrescido de 50%: ', aumentoPercentual(100, 0.5));
+console.log('100 acrescido de 20%: ', aumentoPercentual(100, 20));
