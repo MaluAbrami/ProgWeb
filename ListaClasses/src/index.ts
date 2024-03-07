@@ -48,4 +48,38 @@ class Calculadora {
         this.valor1 = valor1;
         this.valor2 = valor2;
     }
+
+    soma():number{
+        return this.valor1 + this.valor2;
+    }
+
+    subtracao():number{
+        return this.valor1 - this.valor2;
+    }
+
+    multiplicacao():number{
+        return this.valor1 * this.valor2;
+    }
+
+    divisao(){
+        if(this.valor1 == 0 || this.valor2 == 0){
+            console.log('Impossível realizar divisão por zero.');
+            return;
+        }
+        else{
+            return this.valor1 / this.valor2;
+        }
+    }
+
+    porcentagem(){ //PRECISO CORRIGIR ISSO
+        return (this.valor1/100) * (this.valor2/100);
+    }
 }
+
+const primeiraOp = new Calculadora(5, 10);
+const segundaOp = new Calculadora(5, 10);
+const terceiraOp = new Calculadora(5, 10);
+const quartaOp = new Calculadora(5, 10);
+const quintaOp = new Calculadora(5, 10);
+
+console.log(primeiraOp.soma(), segundaOp.subtracao(), terceiraOp.multiplicacao(), quartaOp.divisao(), quintaOp.porcentagem());
