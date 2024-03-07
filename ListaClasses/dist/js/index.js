@@ -18,11 +18,17 @@ class Carro {
     get getCor() {
         return this.cor;
     }
-    calcularIdadeCarro() {
-        return 2024 - this.ano;
+    calcularIdadeCarro(anoAtual) {
+        return anoAtual - this.ano;
     }
 }
 const meuCarro = new Carro("Toyota", "Corolla", 2020, "Prata");
 const novoCarro = new Carro("Nissan", "Kicks", 2021, "Preto");
-console.log(meuCarro, '\nO carro tem', meuCarro.calcularIdadeCarro(), 'anos');
-console.log(novoCarro, '\nO carro tem', novoCarro.calcularIdadeCarro(), 'anos');
+console.log(meuCarro, '\nO carro tem', meuCarro.calcularIdadeCarro(2024), 'anos');
+console.log(novoCarro, '\nO carro tem', novoCarro.calcularIdadeCarro(2024), 'anos');
+class Calculadora {
+    constructor(valor1, valor2) {
+        this.valor1 = valor1;
+        this.valor2 = valor2;
+    }
+}
