@@ -18,15 +18,30 @@ class Carro {
     get getCor() {
         return this.cor;
     }
+    set setMarca(marca) {
+        this.marca;
+    }
+    set setModelo(modelo) {
+        this.modelo;
+    }
+    set setAno(ano) {
+        this.ano;
+    }
+    set setCor(cor) {
+        this.cor;
+    }
     calcularIdadeCarro(anoAtual) {
         return anoAtual - this.ano;
     }
 }
 const meuCarro = new Carro("Toyota", "Corolla", 2020, "Prata");
-const novoCarro = new Carro("Nissan", "Kicks", 2021, "Preto");
 console.log('\nExercício 1 - Carros');
 console.log('\n', meuCarro, '\nO carro tem', meuCarro.calcularIdadeCarro(2024), 'anos');
-console.log('\n', novoCarro, '\nO carro tem', novoCarro.calcularIdadeCarro(2024), 'anos');
+meuCarro.setMarca = 'Nissan';
+meuCarro.setModelo = 'Kicks';
+meuCarro.setAno = 2021;
+meuCarro.setCor = 'Preto';
+console.log('\n', meuCarro, '\nO carro tem', meuCarro.calcularIdadeCarro(2024), 'anos');
 class Calculadora {
     constructor(valor1, valor2) {
         this.valor1 = valor1;
@@ -116,13 +131,13 @@ class Produto {
         return this.preco;
     }
     set setQuantidadeProdutos(quantidadeEmEstoque) {
-        this.quantidadeEmEstoque;
+        this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
     set setNome(nome) {
-        this.nome;
+        this.nome = nome;
     }
     set getPreco(preco) {
-        this.preco;
+        this.preco = preco;
     }
 }
 const sabao = new Produto('Sabão', 3, 100);
