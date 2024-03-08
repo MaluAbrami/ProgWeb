@@ -57,6 +57,12 @@ class Calculadora {
             return 'Erro: Apenas valores positivos são permitidos';
         }
     }
+    get getValor1() {
+        return this.valor1;
+    }
+    get getValor2() {
+        return this.valor2;
+    }
 }
 const primeiraOp = new Calculadora(5, 10);
 const segundaOp = new Calculadora(5, 10);
@@ -66,13 +72,13 @@ const quartaOpAlternativo = new Calculadora(0, 10);
 const quintaOp = new Calculadora(10, 100);
 const quintaOpAlternativo = new Calculadora(-5, 100);
 console.log('\nExercício 2 - Calculadora: ');
-console.log('\nOperação de soma 5 + 10 = ', primeiraOp.soma());
-console.log('Operação de subtração 5 - 10 = ', segundaOp.subtracao());
-console.log('Operação de multiplicação 5 * 10 = ', terceiraOp.multiplicacao());
-console.log('Operação de divisão 5 / 10 = ', quartaOp.divisao());
-console.log('Operação de divisão com zero 0 / 10 = ', quartaOpAlternativo.divisao());
-console.log('Operação de porcentagem, 10% de 100 = ', quintaOp.porcentagem());
-console.log('Operação de porcentagem, -5% de 100 = ', quintaOpAlternativo.porcentagem());
+console.log('\n', primeiraOp, 'Operação de soma = ', primeiraOp.soma());
+console.log(segundaOp, 'Operação de subtração = ', segundaOp.subtracao());
+console.log(terceiraOp, 'Operação de multiplicação = ', terceiraOp.multiplicacao());
+console.log(quartaOp, 'Operação de divisão = ', quartaOp.divisao());
+console.log(quartaOpAlternativo, 'Operação de divisão com zero = ', quartaOpAlternativo.divisao());
+console.log(quintaOp, 'Operação de porcentagem = ', quintaOp.porcentagem());
+console.log(quintaOpAlternativo, 'Operação de porcentagem = ', quintaOpAlternativo.porcentagem());
 class Produto {
     constructor(nome, preco, quantidadeEmEstoque) {
         this.nome = nome;
