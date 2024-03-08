@@ -109,6 +109,21 @@ class Produto {
     get getQuantidadeProdutos() {
         return this.quantidadeEmEstoque;
     }
+    get getNome() {
+        return this.nome;
+    }
+    get getPreco() {
+        return this.preco;
+    }
+    set setQuantidadeProdutos(quantidadeEmEstoque) {
+        this.quantidadeEmEstoque;
+    }
+    set setNome(nome) {
+        this.nome;
+    }
+    set getPreco(preco) {
+        this.preco;
+    }
 }
 const sabao = new Produto('Sabão', 3, 100);
 const shampoo = new Produto('Shampoo', 15, 70);
