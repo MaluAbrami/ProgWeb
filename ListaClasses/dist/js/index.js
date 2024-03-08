@@ -43,7 +43,7 @@ class Calculadora {
     }
     divisao() {
         if (this.valor1 == 0 || this.valor2 == 0) {
-            return;
+            return 'Erro: não é possível realizar divisão por zero';
         }
         else {
             return this.valor1 / this.valor2;
@@ -63,22 +63,29 @@ class Calculadora {
     get getValor2() {
         return this.valor2;
     }
+    set setValor1(valor1) {
+        this.valor1 = valor1;
+    }
+    set setValor2(valor2) {
+        this.valor2 = valor2;
+    }
 }
-const primeiraOp = new Calculadora(5, 10);
-const segundaOp = new Calculadora(5, 10);
-const terceiraOp = new Calculadora(5, 10);
-const quartaOp = new Calculadora(5, 10);
-const quartaOpAlternativo = new Calculadora(0, 10);
-const quintaOp = new Calculadora(10, 100);
-const quintaOpAlternativo = new Calculadora(-5, 100);
+const op = new Calculadora(0, 0);
+op.setValor1 = 5;
+op.setValor2 = 10;
 console.log('\nExercício 2 - Calculadora: ');
-console.log('\n', primeiraOp, 'Operação de soma = ', primeiraOp.soma());
-console.log(segundaOp, 'Operação de subtração = ', segundaOp.subtracao());
-console.log(terceiraOp, 'Operação de multiplicação = ', terceiraOp.multiplicacao());
-console.log(quartaOp, 'Operação de divisão = ', quartaOp.divisao());
-console.log(quartaOpAlternativo, 'Operação de divisão com zero = ', quartaOpAlternativo.divisao());
-console.log(quintaOp, 'Operação de porcentagem = ', quintaOp.porcentagem());
-console.log(quintaOpAlternativo, 'Operação de porcentagem = ', quintaOpAlternativo.porcentagem());
+console.log('\n', op, 'Operação de soma = ', op.soma());
+console.log(op, 'Operação de subtração = ', op.subtracao());
+console.log(op, 'Operação de multiplicação = ', op.multiplicacao());
+console.log(op, 'Operação de divisão = ', op.divisao());
+op.setValor1 = 0;
+console.log(op, 'Operação de divisão com zero = ', op.divisao());
+op.setValor1 = 10;
+op.setValor2 = 100;
+console.log(op, 'Operação de porcentagem = ', op.porcentagem());
+op.setValor1 = -5;
+op.setValor2 = 100;
+console.log(op, 'Operação de porcentagem = ', op.porcentagem());
 class Produto {
     constructor(nome, preco, quantidadeEmEstoque) {
         this.nome = nome;
