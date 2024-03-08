@@ -120,3 +120,4 @@ console.log('Foram vendidos 10 condicionadores', condicionador.vender(10));
 console.log('Produtos em estoque: \n', sabao, '\n', shampoo, '\n', condicionador);
 console.log('O valor total de produtos em estoque é ', sabao.calcularValorTotalEmEstoque() + shampoo.calcularValorTotalEmEstoque() + condicionador.calcularValorTotalEmEstoque());
 console.log('\nForam vendidos 150 sabões', sabao.vender(150));
+console.log(sabao);

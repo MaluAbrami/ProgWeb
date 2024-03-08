@@ -71,7 +71,7 @@ class Calculadora {
         }
     }
 
-    porcentagem(){ //PRECISO CORRIGIR ISSO
+    porcentagem(){
         if(this.valor1 > 0){
             return (this.valor1 / 100) * this.valor2;
         }
@@ -162,3 +162,4 @@ console.log('Produtos em estoque: \n', sabao,'\n', shampoo,'\n', condicionador);
 console.log('O valor total de produtos em estoque é ', sabao.calcularValorTotalEmEstoque() + shampoo.calcularValorTotalEmEstoque() + condicionador.calcularValorTotalEmEstoque());
 
 console.log('\nForam vendidos 150 sabões', sabao.vender(150));
+console.log(sabao);
