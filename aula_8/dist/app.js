@@ -12,7 +12,7 @@ function appLog() {
     console.log("A API se encontra disponível no URL: http://localhost:3000");
 }
 function hello(req, res) {
-    res.send("Hello World");
+    res.status(201).json({ mensagem: "Hello World" });
 }
 app.get("/api/hello", hello);
 app.listen(PORT, appLog);
