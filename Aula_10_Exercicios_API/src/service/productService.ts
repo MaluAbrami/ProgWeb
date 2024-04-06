@@ -14,10 +14,20 @@ export class ProductService{
         return novoProduto;
     }
 
-    consultarProduto(id: any): Product|undefined{
-        const idNumber: number = parseInt(id, 10);
+    consultarProduto(id: any, name: any): Product|undefined{
+        
+        if(id){
+            const idNumber: number = parseInt(id);
+            const product = this.productRepository.filtraProdutoPorId(idNumber);
+            return product;
+        }
+        if(name){
+            const product = this.productRepository.filtraProdutoPorNome(name);
+            return product;
+        }
+            
         console.log(id)
-        return this.productRepository.filtraProdutoPorId(idNumber);
+        return undefined;
     }
 
     getProducts():Product[]{

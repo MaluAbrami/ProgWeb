@@ -7,7 +7,7 @@ app.use(express.json());
 
 
 function logInfo(){
-    console.log(`API em execução no URL: http:localhost:${PORT}`);
+    console.log(`API em execução no URL: http://localhost:3000`);
 }
 
 app.post("/api/product", cadastrarProduto);

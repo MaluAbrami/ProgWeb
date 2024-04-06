@@ -18,15 +18,20 @@ export function cadastrarProduto (req: Request, res: Response){
 
 export function pesquisarProdutoPorID (req: Request, res: Response){
     try {
-        const produto = productService.consultarProduto(req.query.id);
-        if(produto){
-        res.status(200).json(
+        const id = req.query.id;
+        console.log(id);
+        const name = req.query.name;
+        const produto = productService.consultarProduto(id, name);
+
+        if(produto ){
+            res.status(200).json(
             {
                 mensagem:"Produto encontrado com sucesso!",
                 produto:produto
             }
-            );
-        }else{
+            )
+
+        } else{
             res.status(404).json({mensagem:"Produto não encontrado."});
         }
     } catch (error: any) {

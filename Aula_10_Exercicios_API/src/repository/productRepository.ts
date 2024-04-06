@@ -11,6 +11,10 @@ export class ProductRepository{
         return this.productList.find(product => product.id === id);
     }
 
+    filtraProdutoPorNome(name:string): Product|undefined{
+        return this.productList.find(product => product.name === name);
+    }
+
     filtraTodosProdutos():Product[]{
         return this.productList;
     }
