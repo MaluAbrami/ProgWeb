@@ -21,9 +21,10 @@ export function pesquisarProdutoPorID (req: Request, res: Response){
         const id = req.query.id;
         console.log(id);
         const name = req.query.name;
+        console.log(name);
         const produto = productService.consultarProduto(id, name);
 
-        if(produto ){
+        if(produto){
             res.status(200).json(
             {
                 mensagem:"Produto encontrado com sucesso!",

@@ -16,12 +16,16 @@ export class ProductService{
 
     consultarProduto(id: any, name: any): Product|undefined{
         
-        if(id){
+        if(id && name){
+            console.log("Com ID e Name", id, name);
+            const idNumber: number = parseInt(id);
+            const product = this.productRepository.filtraProdutoPorNomeId(idNumber, name);
+            return product;
+        }else if(id){
             const idNumber: number = parseInt(id);
             const product = this.productRepository.filtraProdutoPorId(idNumber);
             return product;
-        }
-        if(name){
+        }else if(name){
             const product = this.productRepository.filtraProdutoPorNome(name);
             return product;
         }

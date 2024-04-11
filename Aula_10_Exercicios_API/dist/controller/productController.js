@@ -22,6 +22,7 @@ function pesquisarProdutoPorID(req, res) {
         const id = req.query.id;
         console.log(id);
         const name = req.query.name;
+        console.log(name);
         const produto = productService.consultarProduto(id, name);
         if (produto) {
             res.status(200).json({

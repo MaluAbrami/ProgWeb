@@ -17,12 +17,18 @@ class ProductService {
         return novoProduto;
     }
     consultarProduto(id, name) {
-        if (id) {
+        if (id && name) {
+            console.log("Com ID e Name", id, name);
+            const idNumber = parseInt(id);
+            const product = this.productRepository.filtraProdutoPorNomeId(idNumber, name);
+            return product;
+        }
+        else if (id) {
             const idNumber = parseInt(id);
             const product = this.productRepository.filtraProdutoPorId(idNumber);
             return product;
         }
-        if (name) {
+        else if (name) {
             const product = this.productRepository.filtraProdutoPorNome(name);
             return product;
         }
