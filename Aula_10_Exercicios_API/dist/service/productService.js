@@ -12,6 +12,10 @@ class ProductService {
         if (!name || !description || !price) {
             throw new Error("Informações incompletas");
         }
+        const produtoEncontrado = this.consultarProduto(undefined, name);
+        if (produtoEncontrado) {
+            throw new Error("Produto já cadastrado!");
+        }
         const novoProduto = new product_1.Product(name, description, price);
         this.productRepository.insereProduto(novoProduto);
         return novoProduto;
