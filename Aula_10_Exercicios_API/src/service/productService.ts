@@ -34,7 +34,12 @@ export class ProductService{
         return undefined;
     }
 
-    getProducts():Product[]{
-        return this.productRepository.filtraTodosProdutos();
+    getProducts(ordem: any):Product[]|undefined{
+        if(ordem === "desc"){
+            return this.productRepository.filtraTodosProdutos().sort((a, b) => b.price - a.price);
+        }
+        else if(ordem === "cres"){
+            return this.productRepository.filtraTodosProdutos().sort((a, b) => a.price - b.price);
+        }
     }
 }

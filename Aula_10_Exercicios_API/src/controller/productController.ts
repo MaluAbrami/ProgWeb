@@ -42,7 +42,9 @@ export function pesquisarProdutoPorID (req: Request, res: Response){
 
 export function listaProdutos (req: Request, res: Response){
     try {
-        res.status(200).json(productService.getProducts());
+        const ordem = req.query.ordem;
+        console.log(ordem);
+        res.status(200).json(productService.getProducts(ordem));
     } catch (error: any) {
         res.status(400).json({ message: error.message});
     }
