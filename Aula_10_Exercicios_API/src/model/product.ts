@@ -16,4 +16,20 @@ export class Product{
     private geraId():number{
         return Date.now();
     }
+
+    somarProdutos():number{
+        let soma: number = 0;
+        for(let i=0; i<Product.length; i++){
+            soma ++;
+        }
+        return soma;
+    }
+
+    public somaPrice(): number{
+        let soma: number = 0;
+        for(let i=0; i<Product.length; i++){
+            soma += this.price;
+        }
+        return soma;
+    }
 }

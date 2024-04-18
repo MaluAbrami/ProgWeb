@@ -74,5 +74,13 @@ class ProductService {
             return this.productRepository.filtraTodosProdutos().sort((a, b) => a.price - b.price);
         }
     }
+    definirEstatisticas(op) {
+        if (op === "total") {
+            return this.productRepository.somarTotal();
+        }
+        else if (op === "média") {
+            return this.pro;
+        }
+    }
 }
 exports.ProductService = ProductService;

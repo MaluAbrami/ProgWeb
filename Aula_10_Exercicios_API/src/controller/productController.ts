@@ -51,3 +51,14 @@ export function listaProdutos (req: Request, res: Response){
         res.status(400).json({ message: error.message});
     }
 };
+
+export function exibirEstatisticas (req: Request, res: Response){
+    try {
+        const op = req.query.op;
+        console.log("A opção escolhida foi", op);
+        
+        res.status(200).json(productService.definirEstatisticas(op));
+    } catch (error: any) {
+        res.status(400).json({ message: error.message});
+    }
+}

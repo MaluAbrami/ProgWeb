@@ -32,5 +32,11 @@ class ProductRepository {
     filtraTodosProdutos() {
         return this.productList;
     }
+    somarTotal() {
+        return this.productList.somarProdutos();
+    }
+    priceMedia() {
+        return;
+    }
 }
 exports.ProductRepository = ProductRepository;

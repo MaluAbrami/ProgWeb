@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.listaProdutos = exports.pesquisarProdutoPorID = exports.cadastrarProduto = void 0;
+exports.exibirEstatisticas = exports.listaProdutos = exports.pesquisarProdutoPorID = exports.cadastrarProduto = void 0;
 const productService_1 = require("../service/productService");
 const productService = new productService_1.ProductService();
 function cadastrarProduto(req, res) {
@@ -54,3 +54,14 @@ function listaProdutos(req, res) {
 }
 exports.listaProdutos = listaProdutos;
 ;
+function exibirEstatisticas(req, res) {
+    try {
+        const op = req.query.op;
+        console.log("A opção escolhida foi", op);
+        res.status(200).json(productService.definirEstatisticas(op));
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+exports.exibirEstatisticas = exibirEstatisticas;

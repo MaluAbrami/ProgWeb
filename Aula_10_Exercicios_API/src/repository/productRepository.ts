@@ -39,4 +39,11 @@ export class ProductRepository{
         return this.productList;
     }
 
+    somarTotal():number|undefined{
+        return this.productList.somarProdutos()
+    }
+
+    priceMedia():number|undefined{
+        return 
+    }
 }

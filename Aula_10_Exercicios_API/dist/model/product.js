@@ -12,5 +12,19 @@ class Product {
     geraId() {
         return Date.now();
     }
+    somarProdutos() {
+        let soma = 0;
+        for (let i = 0; i < Product.length; i++) {
+            soma++;
+        }
+        return soma;
+    }
+    somaPrice() {
+        let soma = 0;
+        for (let i = 0; i < Product.length; i++) {
+            soma += this.price;
+        }
+        return soma;
+    }
 }
 exports.Product = Product;

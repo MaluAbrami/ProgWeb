@@ -15,4 +15,5 @@ function logInfo() {
 app.post("/api/product", productController_1.cadastrarProduto);
 app.get("/api/product", productController_1.pesquisarProdutoPorID);
 app.get("/api/products", productController_1.listaProdutos);
+app.get("/api/products/stats", productController_1.exibirEstatisticas);
 app.listen(PORT, logInfo);
