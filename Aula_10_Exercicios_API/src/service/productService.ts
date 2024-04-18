@@ -5,36 +5,59 @@ export class ProductService{
     productRepository: ProductRepository = new ProductRepository();
 
     cadastrarProduto(produtoData: any): Product {
-        const { name, description, price } = produtoData;
-        if(!name || !description || !price ){
+        const { name, description, price, IdCategoria } = produtoData;
+        if(!name || !description || !price || !IdCategoria){
             throw new Error("Informações incompletas");
         }
-        const produtoEncontrado = this.consultarProduto(undefined, name);
+        const produtoEncontrado = this.consultarProduto(undefined, name, IdCategoria);
         if(produtoEncontrado){
             throw new Error("Produto já cadastrado!");
         }
-        const novoProduto = new Product(name, description, price);
+        const novoProduto = new Product(name, description, price, IdCategoria);
         this.productRepository.insereProduto(novoProduto);
         return novoProduto;
     }
 
-    consultarProduto(id: any, name: any): Product|undefined{
+    consultarProduto(id: any, name: any, categoria:any): Product|undefined{
         
-        if(id && name){
+        if(id && name && categoria){
+            console.log("Com ID, Name e IdCategoria", id, name, categoria);
+            const idNumber: number = parseInt(id);
+            const idCategoria: number = parseInt(categoria);
+            const product = this.productRepository.filtraProdutoPorNomeIdCategoria(idNumber, name, idCategoria);
+            return product;
+        }else if(id && name){
             console.log("Com ID e Name", id, name);
             const idNumber: number = parseInt(id);
-            const product = this.productRepository.filtraProdutoPorNomeId(idNumber, name);
+            const product = this.productRepository.filtraProdutoPorIdNome(idNumber, name);
+            return product;
+        }else if(name && categoria){
+            console.log("Com Name e IdCategoria", name, categoria);
+            const idCategoria: number = parseInt(categoria);
+            const product = this.productRepository.filtraProdutoPorNomeCategoria(name, idCategoria);
+            return product;
+        }else if(id && categoria){
+            console.log("Com ID e IdCategoria", id, categoria);
+            const idNumber: number = parseInt(id);
+            const idCategoria: number = parseInt(categoria);
+            const product = this.productRepository.filtraProdutoPorIdCategoria(idNumber, idCategoria);
             return product;
         }else if(id){
+            console.log("Com ID", id);
             const idNumber: number = parseInt(id);
             const product = this.productRepository.filtraProdutoPorId(idNumber);
             return product;
         }else if(name){
+            console.log("Com Name", name);
             const product = this.productRepository.filtraProdutoPorNome(name);
             return product;
+        }else if(categoria){
+            console.log("Com IdCategoria", categoria);
+            const idCategoria: number = parseInt(categoria);
+            const product = this.productRepository.filtraProdutoPorCategoria(idCategoria);
+            return product;
         }
-            
-        console.log(id)
+    
         return undefined;
     }
 

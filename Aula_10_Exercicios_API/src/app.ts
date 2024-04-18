@@ -11,7 +11,7 @@ function logInfo(){
 }
 
 app.post("/api/product", cadastrarProduto);
-app.get("/api/product",pesquisarProdutoPorID)
-app.get("/api/products", listaProdutos)
+app.get("/api/product",pesquisarProdutoPorID);
+app.get("/api/products", listaProdutos);
 
 app.listen(PORT, logInfo);

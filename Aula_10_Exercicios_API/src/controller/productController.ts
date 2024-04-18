@@ -22,7 +22,9 @@ export function pesquisarProdutoPorID (req: Request, res: Response){
         console.log(id);
         const name = req.query.name;
         console.log(name);
-        const produto = productService.consultarProduto(id, name);
+        const categoria = req.query.categoria;
+        console.log(categoria);
+        const produto = productService.consultarProduto(id, name, categoria);
 
         if(produto){
             res.status(200).json(
