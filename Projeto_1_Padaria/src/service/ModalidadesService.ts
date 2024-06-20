@@ -5,8 +5,8 @@ export class ModalidadesService{
     modalidadesRepository: ModalidadesRepository = new ModalidadesRepository();
     
     cadastrarModalidade(modalidadeData: any): ModalidadePaes{
-        const {name, price, vegano} = modalidadeData;
-        if(!name || !price || !vegano){
+        const {name, vegano} = modalidadeData;
+        if(!name){
             throw new Error("Informações incompletas.");
         }
 
@@ -14,7 +14,7 @@ export class ModalidadesService{
         if(modalidadeEncontrada){
             throw new Error("Modalidade já cadastrada!");
         }
-        const novaModalidade = new ModalidadePaes(name, price, vegano);
+        const novaModalidade = new ModalidadePaes(name, vegano);
         this.modalidadesRepository.insereModalidade(novaModalidade);
         return novaModalidade;
     }

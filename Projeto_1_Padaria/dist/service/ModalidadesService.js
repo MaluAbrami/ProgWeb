@@ -8,15 +8,15 @@ class ModalidadesService {
         this.modalidadesRepository = new ModalidadesRepository_1.ModalidadesRepository();
     }
     cadastrarModalidade(modalidadeData) {
-        const { name, price, vegano } = modalidadeData;
-        if (!name || !price || !vegano) {
+        const { name, vegano } = modalidadeData;
+        if (!name) {
             throw new Error("Informações incompletas.");
         }
         const modalidadeEncontrada = this.consultarModalidade(name);
         if (modalidadeEncontrada) {
             throw new Error("Modalidade já cadastrada!");
         }
-        const novaModalidade = new Modalidades_1.ModalidadePaes(name, price, vegano);
+        const novaModalidade = new Modalidades_1.ModalidadePaes(name, vegano);
         this.modalidadesRepository.insereModalidade(novaModalidade);
         return novaModalidade;
     }
