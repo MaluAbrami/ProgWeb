@@ -1,6 +1,7 @@
 import { imprimir, concatenar, somar } from "./callback";
 import { testTimeout, testInterval } from "./settimeout_setinterval";
 import { testClearTimeout, testClearInterval } from "./cleartimeout_clearinterval";
+import { reverterSentenca, exibeFrase } from "./exerciciosAula";
 
 // //Callback
 // concatenar("Hello", "ADS",imprimir);
@@ -12,5 +13,7 @@ import { testClearTimeout, testClearInterval } from "./cleartimeout_clearinterva
 
 //ClearTimeout
 // testClearTimeout();
-testClearInterval();
+//testClearInterval();
 
+//Exercício 01
+reverterSentenca("Hello ADS", exibeFrase);
