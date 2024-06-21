@@ -11,5 +11,8 @@ class ModalidadesRepository {
     filtraModalidadePorName(name) {
         return this.modalidadesList.find(modalidade => modalidade.name = name);
     }
+    filtraTodasModalidades() {
+        return this.modalidadesList;
+    }
 }
 exports.ModalidadesRepository = ModalidadesRepository;

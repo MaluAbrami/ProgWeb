@@ -24,4 +24,8 @@ export class ModalidadesService{
             return this.modalidadesRepository.filtraModalidadePorName(name);
         }
     }
+
+    getModalidades(): ModalidadePaes[]{
+        return this.modalidadesRepository.filtraTodasModalidades();
+    }
 }

@@ -25,5 +25,8 @@ class ModalidadesService {
             return this.modalidadesRepository.filtraModalidadePorName(name);
         }
     }
+    getModalidades() {
+        return this.modalidadesRepository.filtraTodasModalidades();
+    }
 }
 exports.ModalidadesService = ModalidadesService;

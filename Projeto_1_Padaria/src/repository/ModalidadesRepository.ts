@@ -10,4 +10,8 @@ export class ModalidadesRepository{
     filtraModalidadePorName(name: string): ModalidadePaes|undefined{
         return this.modalidadesList.find(modalidade => modalidade.name = name);
     }
+
+    filtraTodasModalidades(): ModalidadePaes[]{
+        return this.modalidadesList;
+    }
 }

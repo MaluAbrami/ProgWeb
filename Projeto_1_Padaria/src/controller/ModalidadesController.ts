@@ -16,3 +16,11 @@ export function cadastrarModalidade (req: Request, res: Response){
         res.status(400).json({ message: error.message});
     }
 };
+
+export function listarModalidades (req: Request, res: Response){
+    try{
+        res.status(200).json(modalidadesService.getModalidades());
+    } catch(error: any){
+        res.status(404).json({message: error.message});
+    }
+}

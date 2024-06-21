@@ -13,4 +13,5 @@ function logInfo() {
     console.log(`API em execução no URL: http:localhost:${PORT}`);
 }
 app.post("/api/modalidade", ModalidadesController_1.cadastrarModalidade);
+app.get("/api/modalidade/todas", ModalidadesController_1.listarModalidades);
 app.listen(PORT, logInfo);
