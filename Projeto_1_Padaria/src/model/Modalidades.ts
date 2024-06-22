@@ -9,7 +9,7 @@ export class ModalidadePaes{
         this.id = this.geraId();
     }
 
-    private geraId():number{
+    private geraId(): number{
         return Date.now();
     }
 }

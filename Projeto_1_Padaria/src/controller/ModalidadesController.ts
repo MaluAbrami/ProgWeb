@@ -23,4 +23,18 @@ export function listarModalidades (req: Request, res: Response){
     } catch(error: any){
         res.status(404).json({message: error.message});
     }
+};
+
+export function alterarModalidade (req: Request, res: Response){
+    try{
+        const novaModalidade = modalidadesService.alterarModalidade(req.body);
+        res.status(201).json(
+            {
+                mensagem: "Modalidade alterada com sucesso!",
+                modalidade: novaModalidade
+            }
+        );
+    } catch(error: any){
+        res.status(400).json({ message: error.message });
+    }
 }

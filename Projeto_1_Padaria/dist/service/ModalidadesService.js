@@ -12,7 +12,7 @@ class ModalidadesService {
         if (!name) {
             throw new Error("Informações incompletas.");
         }
-        const modalidadeEncontrada = this.consultarModalidade(name);
+        const modalidadeEncontrada = this.consultarModalidade(undefined, name);
         if (modalidadeEncontrada) {
             throw new Error("Modalidade já cadastrada!");
         }
@@ -20,13 +20,34 @@ class ModalidadesService {
         this.modalidadesRepository.insereModalidade(novaModalidade);
         return novaModalidade;
     }
-    consultarModalidade(name) {
-        if (name) {
+    consultarModalidade(id, name) {
+        if (id && name) {
+            const idNumber = parseInt(id, 10);
+            return this.modalidadesRepository.filtraModalidadePorNameId(idNumber, name);
+        }
+        else if (id) {
+            const idNumber = parseInt(id, 10);
+            return this.modalidadesRepository.filtraModalidadePorId(idNumber);
+        }
+        else if (name) {
             return this.modalidadesRepository.filtraModalidadePorName(name);
         }
     }
     getModalidades() {
         return this.modalidadesRepository.filtraTodasModalidades();
+    }
+    alterarModalidade(modalidadeData) {
+        const { name, vegano } = modalidadeData;
+        if (!name) {
+            throw new Error("Informações incompletas");
+        }
+        let modalidadeEncontrada = this.consultarModalidade(undefined, name);
+        if (!modalidadeEncontrada) {
+            throw new Error("Produto não cadastrado!");
+        }
+        modalidadeEncontrada.vegano = vegano;
+        this.modalidadesRepository.alterarModalidade(modalidadeEncontrada);
+        return modalidadeEncontrada;
     }
 }
 exports.ModalidadesService = ModalidadesService;

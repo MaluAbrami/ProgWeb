@@ -14,4 +14,5 @@ function logInfo() {
 }
 app.post("/api/modalidade", ModalidadesController_1.cadastrarModalidade);
 app.get("/api/modalidade/todas", ModalidadesController_1.listarModalidades);
+app.put("/api/modalidade", ModalidadesController_1.alterarModalidade);
 app.listen(PORT, logInfo);

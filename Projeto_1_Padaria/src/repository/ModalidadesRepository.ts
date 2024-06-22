@@ -7,11 +7,27 @@ export class ModalidadesRepository{
         this.modalidadesList.push(modalidade);
     }
 
+    filtraModalidadePorNameId(id: number, name: string): ModalidadePaes|undefined{
+        return this.modalidadesList.find(modalidade => modalidade.id === id && modalidade.name === name);
+    }
+
+    filtraModalidadePorId(id: number): ModalidadePaes|undefined{
+        return this.modalidadesList.find(modalidade => modalidade.id === id);
+    }
+
     filtraModalidadePorName(name: string): ModalidadePaes|undefined{
-        return this.modalidadesList.find(modalidade => modalidade.name = name);
+        return this.modalidadesList.find(modalidade => modalidade.name === name);
     }
 
     filtraTodasModalidades(): ModalidadePaes[]{
         return this.modalidadesList;
     }
+
+    alterarModalidade(modalidade: ModalidadePaes): number{
+        const index = this.modalidadesList.indexOf(modalidade);
+        if(index !== -1){
+            this.modalidadesList[index] = modalidade;
+        }
+        return index;
+    } 
 }
