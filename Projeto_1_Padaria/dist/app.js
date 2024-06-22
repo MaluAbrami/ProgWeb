@@ -20,4 +20,5 @@ app.delete("/api/modalidade", ModalidadesController_1.deletaModalidade);
 app.get("/api/modalidade", ModalidadesController_1.recuperaModalidade);
 app.post("/api/estoque", EstoqueController_1.cadastrarNoEstoque);
 app.get("/api/modalidade/todos", ModalidadesController_1.listarModalidades);
+app.get("/api/modalidade", EstoqueController_1.buscarNoEstoque);
 app.listen(PORT, logInfo);
