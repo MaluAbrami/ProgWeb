@@ -51,4 +51,12 @@ export class ModalidadesService{
         this.modalidadesRepository.alterarModalidade(modalidadeEncontrada);
         return modalidadeEncontrada;
     }
+
+    deletaModalidade(name: any){
+        const modalidade = this.consultarModalidade(undefined, name);
+        if(!modalidade){
+            throw new Error("Modalidade não encontrada");
+        }
+        this.modalidadesRepository.deletaModalidade(modalidade);
+    }
 }

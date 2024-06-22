@@ -27,5 +27,12 @@ class ModalidadesRepository {
         }
         return index;
     }
+    deletaModalidade(modalidade) {
+        const index = this.modalidadesList.indexOf(modalidade);
+        if (index !== -1) {
+            this.modalidadesList[index] = modalidade;
+        }
+        return index;
+    }
 }
 exports.ModalidadesRepository = ModalidadesRepository;

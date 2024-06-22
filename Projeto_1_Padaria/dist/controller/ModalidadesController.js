@@ -1,8 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.cadastrarModalidade = cadastrarModalidade;
-exports.listarModalidades = listarModalidades;
-exports.alterarModalidade = alterarModalidade;
+exports.deletaModalidade = exports.alterarModalidade = exports.listarModalidades = exports.cadastrarModalidade = void 0;
 const ModalidadesService_1 = require("../service/ModalidadesService");
 const modalidadesService = new ModalidadesService_1.ModalidadesService();
 function cadastrarModalidade(req, res) {
@@ -17,6 +15,7 @@ function cadastrarModalidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
+exports.cadastrarModalidade = cadastrarModalidade;
 ;
 function listarModalidades(req, res) {
     try {
@@ -26,6 +25,7 @@ function listarModalidades(req, res) {
         res.status(404).json({ message: error.message });
     }
 }
+exports.listarModalidades = listarModalidades;
 ;
 function alterarModalidade(req, res) {
     try {
@@ -39,3 +39,16 @@ function alterarModalidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
+exports.alterarModalidade = alterarModalidade;
+;
+function deletaModalidade(req, res) {
+    try {
+        modalidadesService.deletaModalidade(req.query.name);
+        res.status(200).json({ message: "Modalidade deletada com sucesso!" });
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+exports.deletaModalidade = deletaModalidade;
+;

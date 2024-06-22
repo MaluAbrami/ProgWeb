@@ -30,4 +30,12 @@ export class ModalidadesRepository{
         }
         return index;
     } 
+
+    deletaModalidade(modalidade: ModalidadePaes){
+        const index = this.modalidadesList.indexOf(modalidade);
+        if(index !== -1){
+            this.modalidadesList[index] = modalidade;
+        }
+        return index;
+    }
 }

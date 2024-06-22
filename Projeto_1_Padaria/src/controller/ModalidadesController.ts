@@ -37,4 +37,13 @@ export function alterarModalidade (req: Request, res: Response){
     } catch(error: any){
         res.status(400).json({ message: error.message });
     }
-}
+};
+
+export function deletaModalidade (req:Request, res:Response){
+    try{
+        modalidadesService.deletaModalidade(req.query.name);
+        res.status(200).json({ message: "Modalidade deletada com sucesso!"});
+    } catch (error: any){
+        res.status(400).json({ message: error.message });
+    }
+};
