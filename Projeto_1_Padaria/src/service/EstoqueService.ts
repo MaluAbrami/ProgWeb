@@ -5,17 +5,31 @@ export class EstoqueService{
 
     estoqueRepository: EstoqueRepository = new EstoqueRepository();
 
-    cadastrarNoEstoque(estoqueData: any): EstoquePaes{
+    cadastrarNoEstoque(estoqueData: any): EstoquePaes|undefined{
         const {modalidadeId, quantidade, price} = estoqueData;
         if(!modalidadeId || !quantidade || !price){
             throw new Error("Informações incompletas");
         }
-        const novoEstoque = new EstoquePaes(modalidadeId, quantidade, price);
-        this.estoqueRepository.insereNoEstoque(novoEstoque);
-        return novoEstoque;
+
+        const estoqueEncontrado = this.consultarEstoque(modalidadeId); //Caso já tenha itens iguais devemos apenas alterar sua quantidade
+        if(estoqueEncontrado){
+            estoqueEncontrado.quantidade += quantidade;
+        }
+        else{ //Se não existir itens iguais, criamos um um lugar no estoque para o item novo
+            const novoEstoque = new EstoquePaes(modalidadeId, quantidade, price);
+            this.estoqueRepository.insereNoEstoque(novoEstoque);
+            return novoEstoque;
+        }
     }
 
     getEstoque(): EstoquePaes[]{
         return this.estoqueRepository.filtraTodosOsEstoques();
+    }
+
+    consultarEstoque(id: any): EstoquePaes|undefined{
+        if(id){
+            const idNumber: number = parseInt(id, 10);
+            return this.estoqueRepository.filtraEstoquePorId(idNumber);
+        }
     }
 }

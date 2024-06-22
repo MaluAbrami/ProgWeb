@@ -11,5 +11,8 @@ class EstoqueRepository {
     filtraTodosOsEstoques() {
         return this.estoqueList;
     }
+    filtraEstoquePorId(id) {
+        return this.estoqueList.find(estoque => estoque.id === id);
+    }
 }
 exports.EstoqueRepository = EstoqueRepository;

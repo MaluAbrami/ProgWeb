@@ -10,4 +10,8 @@ export class EstoqueRepository {
     filtraTodosOsEstoques(): EstoquePaes[]{
         return this.estoqueList;
     }
+
+    filtraEstoquePorId(id: number): EstoquePaes|undefined{
+        return this.estoqueList.find(estoque => estoque.id === id);
+    }
 }

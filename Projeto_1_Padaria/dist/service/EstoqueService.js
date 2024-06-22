@@ -12,12 +12,24 @@ class EstoqueService {
         if (!modalidadeId || !quantidade || !price) {
             throw new Error("Informações incompletas");
         }
-        const novoEstoque = new Estoque_1.EstoquePaes(modalidadeId, quantidade, price);
-        this.estoqueRepository.insereNoEstoque(novoEstoque);
-        return novoEstoque;
+        const estoqueEncontrado = this.consultarEstoque(modalidadeId); //Caso já tenha itens iguais devemos apenas alterar sua quantidade
+        if (estoqueEncontrado) {
+            estoqueEncontrado.quantidade += quantidade;
+        }
+        else { //Se não existir itens iguais, criamos um um lugar no estoque para o item novo
+            const novoEstoque = new Estoque_1.EstoquePaes(modalidadeId, quantidade, price);
+            this.estoqueRepository.insereNoEstoque(novoEstoque);
+            return novoEstoque;
+        }
     }
     getEstoque() {
         return this.estoqueRepository.filtraTodosOsEstoques();
+    }
+    consultarEstoque(id) {
+        if (id) {
+            const idNumber = parseInt(id, 10);
+            return this.estoqueRepository.filtraEstoquePorId(idNumber);
+        }
     }
 }
 exports.EstoqueService = EstoqueService;
