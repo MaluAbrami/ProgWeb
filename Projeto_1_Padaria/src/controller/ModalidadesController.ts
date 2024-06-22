@@ -47,3 +47,22 @@ export function deletaModalidade (req:Request, res:Response){
         res.status(400).json({ message: error.message });
     }
 };
+
+export function recuperaModalidade (req:Request, res: Response){
+    try{
+        const modalidade = modalidadesService.consultarModalidade(req.query.id);
+        if(modalidade){
+            res.status(200).json(
+                {
+                    mensagem: "Modalidade encontrada com sucesso",
+                    modalidade: modalidade
+                }
+            );
+        }
+        else{
+            res.status(404).json({mensagem: "Modalidade não encontrada"});
+        }
+    } catch (error: any){
+        res.status(400).json({ message: error.message });
+    }
+}

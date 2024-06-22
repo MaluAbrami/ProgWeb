@@ -12,7 +12,7 @@ class ModalidadesService {
         if (!name) {
             throw new Error("Informações incompletas.");
         }
-        const modalidadeEncontrada = this.consultarModalidade(undefined, name);
+        const modalidadeEncontrada = this.consultarModalidade(modalidadeData.id);
         if (modalidadeEncontrada) {
             throw new Error("Modalidade já cadastrada!");
         }
@@ -20,18 +20,23 @@ class ModalidadesService {
         this.modalidadesRepository.insereModalidade(novaModalidade);
         return novaModalidade;
     }
-    consultarModalidade(id, name) {
-        if (id && name) {
-            const idNumber = parseInt(id, 10);
-            return this.modalidadesRepository.filtraModalidadePorNameId(idNumber, name);
-        }
-        else if (id) {
+    consultarModalidade(id /*, name: any*/) {
+        if (id) {
             const idNumber = parseInt(id, 10);
             return this.modalidadesRepository.filtraModalidadePorId(idNumber);
         }
-        else if (name) {
+        /*if(id && name){
+            const idNumber: number = parseInt(id, 10);
+            return this.modalidadesRepository.filtraModalidadePorNameId(idNumber, name);
+        }
+        else if(id){
+            const idNumber: number = parseInt(id, 10);
+            return this.modalidadesRepository.filtraModalidadePorId(idNumber);
+        }
+        else if(name){
             return this.modalidadesRepository.filtraModalidadePorName(name);
         }
+        */
     }
     getModalidades() {
         return this.modalidadesRepository.filtraTodasModalidades();

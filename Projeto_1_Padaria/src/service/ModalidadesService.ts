@@ -10,7 +10,7 @@ export class ModalidadesService{
             throw new Error("Informações incompletas.");
         }
 
-        const modalidadeEncontrada = this.consultarModalidade(undefined, name);
+        const modalidadeEncontrada = this.consultarModalidade(modalidadeData.id);
         if(modalidadeEncontrada){
             throw new Error("Modalidade já cadastrada!");
         }
@@ -19,8 +19,12 @@ export class ModalidadesService{
         return novaModalidade;
     }
 
-    consultarModalidade(id: any, name: any): ModalidadePaes|undefined{
-        if(id && name){
+    consultarModalidade(id: any/*, name: any*/): ModalidadePaes|undefined{
+        if(id){
+            const idNumber: number = parseInt(id, 10);
+            return this.modalidadesRepository.filtraModalidadePorId(idNumber);
+        }
+        /*if(id && name){
             const idNumber: number = parseInt(id, 10);
             return this.modalidadesRepository.filtraModalidadePorNameId(idNumber, name);
         }
@@ -31,6 +35,7 @@ export class ModalidadesService{
         else if(name){
             return this.modalidadesRepository.filtraModalidadePorName(name);
         }
+        */
     }
 
     getModalidades(): ModalidadePaes[]{

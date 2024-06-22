@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletaModalidade = exports.alterarModalidade = exports.listarModalidades = exports.cadastrarModalidade = void 0;
+exports.recuperaModalidade = exports.deletaModalidade = exports.alterarModalidade = exports.listarModalidades = exports.cadastrarModalidade = void 0;
 const ModalidadesService_1 = require("../service/ModalidadesService");
 const modalidadesService = new ModalidadesService_1.ModalidadesService();
 function cadastrarModalidade(req, res) {
@@ -52,3 +52,21 @@ function deletaModalidade(req, res) {
 }
 exports.deletaModalidade = deletaModalidade;
 ;
+function recuperaModalidade(req, res) {
+    try {
+        const modalidade = modalidadesService.consultarModalidade(req.query.id);
+        if (modalidade) {
+            res.status(200).json({
+                mensagem: "Modalidade encontrada com sucesso",
+                modalidade: modalidade
+            });
+        }
+        else {
+            res.status(404).json({ mensagem: "Modalidade não encontrada" });
+        }
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+exports.recuperaModalidade = recuperaModalidade;
