@@ -36,7 +36,7 @@ class EstoqueService {
         if (!modalidadeId || !quantidade || !price) {
             throw new Error("Informações incompletas");
         }
-        let estoqueEncontrado = this.consultarEstoque(estoqueData.id);
+        let estoqueEncontrado = this.consultarEstoque(modalidadeId);
         if (!estoqueEncontrado) {
             throw new Error("Item não encontrado no estoque!");
         }
