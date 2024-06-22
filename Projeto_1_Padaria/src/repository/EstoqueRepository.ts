@@ -6,4 +6,8 @@ export class EstoqueRepository {
     insereNoEstoque(estoque: EstoquePaes){
         this.estoqueList.push(estoque);
     }
+
+    filtraTodosOsEstoques(): EstoquePaes[]{
+        return this.estoqueList;
+    }
 }

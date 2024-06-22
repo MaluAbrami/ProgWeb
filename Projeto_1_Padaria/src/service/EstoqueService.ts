@@ -6,12 +6,16 @@ export class EstoqueService{
     estoqueRepository: EstoqueRepository = new EstoqueRepository();
 
     cadastrarNoEstoque(estoqueData: any): EstoquePaes{
-        const {quantidade, price} = estoqueData;
-        if(!quantidade || !price){
+        const {modalidadeId, quantidade, price} = estoqueData;
+        if(!modalidadeId || !quantidade || !price){
             throw new Error("Informações incompletas");
         }
-        const novoEstoque = new EstoquePaes(quantidade, price);
+        const novoEstoque = new EstoquePaes(modalidadeId, quantidade, price);
         this.estoqueRepository.insereNoEstoque(novoEstoque);
         return novoEstoque;
+    }
+
+    getEstoque(): EstoquePaes[]{
+        return this.estoqueRepository.filtraTodosOsEstoques();
     }
 }
