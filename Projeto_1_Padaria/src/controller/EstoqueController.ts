@@ -43,3 +43,17 @@ export function buscarNoEstoque (req: Request, res: Response){
         res.status(400).json({ message: error.message });
     }
 };
+
+export function alterarEstoque (req: Request, res: Response){
+    try{
+        const novoEstoque = estoqueService.alterarEstoque(req.body);
+        res.status(201).json(
+            {
+                mensagem:"Item alterado no estoque com sucesso!",
+                estoque: novoEstoque
+            }
+        );
+    } catch (error: any){
+        res.status(400).json({ message: error.message });
+    }
+}

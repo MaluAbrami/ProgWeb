@@ -14,4 +14,12 @@ export class EstoqueRepository {
     filtraEstoquePorId(id: number): EstoquePaes|undefined{
         return this.estoqueList.find(estoque => estoque.id === id);
     }
+
+    alterarEstoque(estoque: EstoquePaes): number{
+        const index = this.estoqueList.indexOf(estoque);
+        if(index !== -1){
+            this.estoqueList[index] = estoque;
+        }
+        return index;
+    }
 }

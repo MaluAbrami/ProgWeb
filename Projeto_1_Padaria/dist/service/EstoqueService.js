@@ -31,5 +31,20 @@ class EstoqueService {
             return this.estoqueRepository.filtraEstoquePorId(idNumber);
         }
     }
+    alterarEstoque(estoqueData) {
+        const { modalidadeId, quantidade, price } = estoqueData;
+        if (!modalidadeId || !quantidade || !price) {
+            throw new Error("Informações incompletas");
+        }
+        let estoqueEncontrado = this.consultarEstoque(estoqueData.id);
+        if (!estoqueEncontrado) {
+            throw new Error("Item não encontrado no estoque!");
+        }
+        estoqueEncontrado.modalidadeId = modalidadeId;
+        estoqueEncontrado.quantidade = quantidade;
+        estoqueEncontrado.price = price;
+        this.estoqueRepository.alterarEstoque(estoqueEncontrado);
+        return estoqueEncontrado;
+    }
 }
 exports.EstoqueService = EstoqueService;

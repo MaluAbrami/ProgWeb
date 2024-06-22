@@ -14,5 +14,12 @@ class EstoqueRepository {
     filtraEstoquePorId(id) {
         return this.estoqueList.find(estoque => estoque.id === id);
     }
+    alterarEstoque(estoque) {
+        const index = this.estoqueList.indexOf(estoque);
+        if (index !== -1) {
+            this.estoqueList[index] = estoque;
+        }
+        return index;
+    }
 }
 exports.EstoqueRepository = EstoqueRepository;

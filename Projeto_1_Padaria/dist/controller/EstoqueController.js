@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buscarNoEstoque = exports.listaEstoque = exports.cadastrarNoEstoque = void 0;
+exports.alterarEstoque = exports.buscarNoEstoque = exports.listaEstoque = exports.cadastrarNoEstoque = void 0;
 const EstoqueService_1 = require("../service/EstoqueService");
 const estoqueService = new EstoqueService_1.EstoqueService();
 function cadastrarNoEstoque(req, res) {
@@ -46,3 +46,16 @@ function buscarNoEstoque(req, res) {
 }
 exports.buscarNoEstoque = buscarNoEstoque;
 ;
+function alterarEstoque(req, res) {
+    try {
+        const novoEstoque = estoqueService.alterarEstoque(req.body);
+        res.status(201).json({
+            mensagem: "Item alterado no estoque com sucesso!",
+            estoque: novoEstoque
+        });
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+exports.alterarEstoque = alterarEstoque;
