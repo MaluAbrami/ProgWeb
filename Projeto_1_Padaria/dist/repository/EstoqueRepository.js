@@ -8,5 +8,8 @@ class EstoqueRepository {
     insereNoEstoque(estoque) {
         this.estoqueList.push(estoque);
     }
+    filtraTodosOsEstoques() {
+        return this.estoqueList;
+    }
 }
 exports.EstoqueRepository = EstoqueRepository;
