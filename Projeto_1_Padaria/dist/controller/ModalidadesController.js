@@ -54,7 +54,8 @@ exports.deletaModalidade = deletaModalidade;
 ;
 function recuperaModalidade(req, res) {
     try {
-        const modalidade = modalidadesService.consultarModalidade(req.query.name);
+        const id = Number(req.query.id); //Aqui estou convertendo o ID para número
+        const modalidade = modalidadesService.consultarModalidadePorId(id);
         if (modalidade) {
             res.status(200).json({
                 mensagem: "Modalidade encontrada com sucesso",

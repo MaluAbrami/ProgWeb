@@ -7,15 +7,9 @@ export class ModalidadesRepository{
         this.modalidadesList.push(modalidade);
     }
 
-    /*
-    filtraModalidadePorNameId(id: number, name: string): ModalidadePaes|undefined{
-        return this.modalidadesList.find(modalidade => modalidade.id === id && modalidade.name === name);
-    }
-
     filtraModalidadePorId(id: number): ModalidadePaes|undefined{
         return this.modalidadesList.find(modalidade => modalidade.id === id);
     }
-    */
 
     filtraModalidadePorName(name: string): ModalidadePaes|undefined{
         return this.modalidadesList.find(modalidade => modalidade.name === name);

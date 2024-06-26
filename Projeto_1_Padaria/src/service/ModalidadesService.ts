@@ -25,6 +25,12 @@ export class ModalidadesService{
         }
     }
 
+    consultarModalidadePorId(id: any): ModalidadePaes|undefined{
+        if(id){
+            return this.modalidadesRepository.filtraModalidadePorId(id);
+        }
+    }
+
     getModalidades(): ModalidadePaes[]{
         return this.modalidadesRepository.filtraTodasModalidades();
     }

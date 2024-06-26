@@ -25,6 +25,11 @@ class ModalidadesService {
             return this.modalidadesRepository.filtraModalidadePorName(name);
         }
     }
+    consultarModalidadePorId(id) {
+        if (id) {
+            return this.modalidadesRepository.filtraModalidadePorId(id);
+        }
+    }
     getModalidades() {
         return this.modalidadesRepository.filtraTodasModalidades();
     }
