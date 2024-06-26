@@ -12,7 +12,7 @@ class ModalidadesService {
         if (!name) {
             throw new Error("Informações incompletas.");
         }
-        const modalidadeEncontrada = this.consultarModalidade(modalidadeData.id);
+        const modalidadeEncontrada = this.consultarModalidade(name);
         if (modalidadeEncontrada) {
             throw new Error("Modalidade já cadastrada!");
         }
@@ -20,23 +20,10 @@ class ModalidadesService {
         this.modalidadesRepository.insereModalidade(novaModalidade);
         return novaModalidade;
     }
-    consultarModalidade(id /*, name: any*/) {
-        if (id) {
-            const idNumber = parseInt(id, 10);
-            return this.modalidadesRepository.filtraModalidadePorId(idNumber);
-        }
-        /*if(id && name){
-            const idNumber: number = parseInt(id, 10);
-            return this.modalidadesRepository.filtraModalidadePorNameId(idNumber, name);
-        }
-        else if(id){
-            const idNumber: number = parseInt(id, 10);
-            return this.modalidadesRepository.filtraModalidadePorId(idNumber);
-        }
-        else if(name){
+    consultarModalidade(name) {
+        if (name) {
             return this.modalidadesRepository.filtraModalidadePorName(name);
         }
-        */
     }
     getModalidades() {
         return this.modalidadesRepository.filtraTodasModalidades();
@@ -46,7 +33,7 @@ class ModalidadesService {
         if (!name) {
             throw new Error("Informações incompletas");
         }
-        let modalidadeEncontrada = this.consultarModalidade(undefined, name);
+        let modalidadeEncontrada = this.consultarModalidade(name);
         if (!modalidadeEncontrada) {
             throw new Error("Produto não cadastrado!");
         }
@@ -55,7 +42,7 @@ class ModalidadesService {
         return modalidadeEncontrada;
     }
     deletaModalidade(name) {
-        const modalidade = this.consultarModalidade(undefined, name);
+        const modalidade = this.consultarModalidade(name);
         if (!modalidade) {
             throw new Error("Modalidade não encontrada");
         }

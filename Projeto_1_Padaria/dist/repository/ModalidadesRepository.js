@@ -8,12 +8,15 @@ class ModalidadesRepository {
     insereModalidade(modalidade) {
         this.modalidadesList.push(modalidade);
     }
-    filtraModalidadePorNameId(id, name) {
+    /*
+    filtraModalidadePorNameId(id: number, name: string): ModalidadePaes|undefined{
         return this.modalidadesList.find(modalidade => modalidade.id === id && modalidade.name === name);
     }
-    filtraModalidadePorId(id) {
+
+    filtraModalidadePorId(id: number): ModalidadePaes|undefined{
         return this.modalidadesList.find(modalidade => modalidade.id === id);
     }
+    */
     filtraModalidadePorName(name) {
         return this.modalidadesList.find(modalidade => modalidade.name === name);
     }
