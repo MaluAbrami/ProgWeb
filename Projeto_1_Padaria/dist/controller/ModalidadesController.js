@@ -43,7 +43,7 @@ exports.alterarModalidade = alterarModalidade;
 ;
 function deletaModalidade(req, res) {
     try {
-        modalidadesService.deletaModalidade(req.query.name);
+        modalidadesService.deletaModalidade(req.body);
         res.status(200).json({ message: "Modalidade deletada com sucesso!" });
     }
     catch (error) {
@@ -54,7 +54,7 @@ exports.deletaModalidade = deletaModalidade;
 ;
 function recuperaModalidade(req, res) {
     try {
-        const modalidade = modalidadesService.consultarModalidade(req.query.id);
+        const modalidade = modalidadesService.consultarModalidade(req.query.name);
         if (modalidade) {
             res.status(200).json({
                 mensagem: "Modalidade encontrada com sucesso",

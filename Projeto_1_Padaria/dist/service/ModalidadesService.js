@@ -41,12 +41,16 @@ class ModalidadesService {
         this.modalidadesRepository.alterarModalidade(modalidadeEncontrada);
         return modalidadeEncontrada;
     }
-    deletaModalidade(name) {
-        const modalidade = this.consultarModalidade(name);
-        if (!modalidade) {
+    deletaModalidade(modalidadeData) {
+        const { name, vegano } = modalidadeData;
+        if (!name) {
+            throw new Error("Informações incompletas");
+        }
+        let modalidadeEncontrada = this.consultarModalidade(name);
+        if (!modalidadeEncontrada) {
             throw new Error("Modalidade não encontrada");
         }
-        this.modalidadesRepository.deletaModalidade(modalidade);
+        this.modalidadesRepository.deletaModalidade(modalidadeEncontrada);
     }
 }
 exports.ModalidadesService = ModalidadesService;

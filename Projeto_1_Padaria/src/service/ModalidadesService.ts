@@ -44,11 +44,15 @@ export class ModalidadesService{
         return modalidadeEncontrada;
     }
 
-    deletaModalidade(name: any){
-        const modalidade = this.consultarModalidade(name);
-        if(!modalidade){
+    deletaModalidade(modalidadeData: any){
+        const {name, vegano} = modalidadeData;
+        if(!name){
+            throw new Error("Informações incompletas");
+        }
+        let modalidadeEncontrada = this.consultarModalidade(name);
+        if(!modalidadeEncontrada){
             throw new Error("Modalidade não encontrada");
         }
-        this.modalidadesRepository.deletaModalidade(modalidade);
+        this.modalidadesRepository.deletaModalidade(modalidadeEncontrada);
     }
 }
