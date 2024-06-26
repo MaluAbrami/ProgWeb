@@ -36,7 +36,7 @@ export class ModalidadesRepository{
     deletaModalidade(modalidade: ModalidadePaes){
         const index = this.modalidadesList.indexOf(modalidade);
         if(index !== -1){
-            this.modalidadesList[index] = modalidade;
+            this.modalidadesList.splice(index, 1); //o método "splice" remove elementos da lista, começando do índice especificado ('index') e removendo apenas um elemento ('1')
         }
         return index;
     }
