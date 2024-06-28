@@ -1,7 +1,8 @@
 import { ModalidadePaes } from "../model/Modalidades";
+import { modalidadePaes } from "../global/global";
 
 export class ModalidadesRepository{
-    modalidadesList: ModalidadePaes[] = [];
+    modalidadesList: ModalidadePaes[] = modalidadePaes();
 
     insereModalidade(modalidade: ModalidadePaes){
         this.modalidadesList.push(modalidade);
