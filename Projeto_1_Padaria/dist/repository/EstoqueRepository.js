@@ -11,6 +11,9 @@ class EstoqueRepository {
     filtraTodosOsEstoques() {
         return this.estoqueList;
     }
+    filtraEstoquePorModalidadeId(modalidadeId) {
+        return this.estoqueList.find(estoque => estoque.modalidadeId === modalidadeId);
+    }
     filtraEstoquePorId(id) {
         return this.estoqueList.find(estoque => estoque.id === id);
     }

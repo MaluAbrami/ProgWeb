@@ -1,3 +1,4 @@
+import { parse } from "qs";
 import { EstoquePaes } from "../model/Estoque";
 import { EstoqueRepository } from "../repository/EstoqueRepository";
 
@@ -11,9 +12,9 @@ export class EstoqueService{
             throw new Error("Informações incompletas");
         }
 
-        const estoqueEncontrado = this.consultarEstoque(modalidadeId); //Caso já tenha itens iguais devemos apenas alterar sua quantidade
+        const estoqueEncontrado = this.consultarEstoquePorModalidadeId(modalidadeId); 
         if(estoqueEncontrado){
-            estoqueEncontrado.quantidade += quantidade;
+            throw new Error("Esta modalidade já existe no estoque!");
         }
         else{ //Se não existir itens iguais, criamos um um lugar no estoque para o item novo
             const novoEstoque = new EstoquePaes(modalidadeId, quantidade, price);
@@ -26,26 +27,51 @@ export class EstoqueService{
         return this.estoqueRepository.filtraTodosOsEstoques();
     }
 
-    consultarEstoque(id: any): EstoquePaes|undefined{
+    consultarEstoquePorModalidadeId(modalidadeId: any): EstoquePaes|undefined{
+        if(modalidadeId){
+            const idNumber: number = parseInt(modalidadeId, 10);
+            return this.estoqueRepository.filtraEstoquePorModalidadeId(idNumber);
+        }
+    }
+
+    consultarEstoquePorId(id: any): EstoquePaes|undefined{
         if(id){
             const idNumber: number = parseInt(id, 10);
             return this.estoqueRepository.filtraEstoquePorId(idNumber);
         }
     }
 
-    alterarEstoque(estoqueData: any): EstoquePaes{ //PRECISO PERGUNTAR SOBRE O ADICIONAR QUANTIDADE E DELETAR QUANTIDADE
-        const  {modalidadeId, quantidade, price} = estoqueData;
-        if(!modalidadeId || !quantidade || !price){
+    adicionaQuantidade(estoqueData: any): EstoquePaes{
+        const {id, modalidadeId, quantidade, price} = estoqueData;
+
+        if(!id || !modalidadeId || !quantidade || !price){
             throw new Error("Informações incompletas");
         }
 
-        let estoqueEncontrado = this.consultarEstoque(modalidadeId);
+        let estoqueEncontrado = this.consultarEstoquePorId(id);
         if(!estoqueEncontrado){
             throw new Error("Item não encontrado no estoque!");
         }
-        estoqueEncontrado.modalidadeId = modalidadeId;
-        estoqueEncontrado.quantidade = quantidade;
-        estoqueEncontrado.price = price;
+        estoqueEncontrado.quantidade += quantidade;
+        this.estoqueRepository.alterarEstoque(estoqueEncontrado);
+        return estoqueEncontrado;
+    }
+
+    deletaQuantidade(estoqueData: any): EstoquePaes{
+        const {id, modalidadeId, quantidade, price} = estoqueData;
+
+        if(!id || !modalidadeId || !quantidade || !price){
+            throw new Error("Informações incompletas");
+        }
+
+        let estoqueEncontrado = this.consultarEstoquePorId(id);
+        if(!estoqueEncontrado){
+            throw new Error("Item não encontrado no estoque!");
+        }
+        else if(estoqueEncontrado.quantidade - quantidade < 0){
+            throw new Error("Não há quantidade suficiente no estoque!");
+        }
+        estoqueEncontrado.quantidade -= quantidade;
         this.estoqueRepository.alterarEstoque(estoqueEncontrado);
         return estoqueEncontrado;
     }

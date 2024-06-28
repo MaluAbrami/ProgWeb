@@ -1,6 +1,6 @@
 import express from "express";
 import { alterarModalidade, cadastrarModalidade, deletaModalidade, listarModalidades, recuperaModalidade } from "./controller/ModalidadesController";
-import { alterarEstoque, buscarNoEstoque, cadastrarNoEstoque, listaEstoque } from "./controller/EstoqueController";
+import { adicionaQuantidade, alterarEstoque, buscarNoEstoque, cadastrarNoEstoque, deletaQuantidade, listaEstoque } from "./controller/EstoqueController";
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -20,6 +20,7 @@ app.get("/api/modalidade", recuperaModalidade);
 app.post("/api/estoque", cadastrarNoEstoque);
 app.get("/api/estoque/todos", listaEstoque);
 app.get("/api/estoque", buscarNoEstoque);
-app.put("/api/estoque", alterarEstoque);
+app.put("/api/estoque", adicionaQuantidade);
+app.delete("/api/estoque", deletaQuantidade);
 
 app.listen(PORT, logInfo);

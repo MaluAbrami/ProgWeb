@@ -11,6 +11,10 @@ export class EstoqueRepository {
         return this.estoqueList;
     }
 
+    filtraEstoquePorModalidadeId(modalidadeId: number): EstoquePaes|undefined{
+        return this.estoqueList.find(estoque => estoque.modalidadeId === modalidadeId);
+    }
+
     filtraEstoquePorId(id: number): EstoquePaes|undefined{
         return this.estoqueList.find(estoque => estoque.id === id);
     }

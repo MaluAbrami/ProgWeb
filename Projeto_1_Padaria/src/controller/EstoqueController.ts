@@ -27,7 +27,7 @@ export function listaEstoque (req: Request, res: Response){
 
 export function buscarNoEstoque (req: Request, res: Response){
     try{
-        const estoque = estoqueService.consultarEstoque(req.query.id);
+        const estoque = estoqueService.consultarEstoquePorId(req.query.id);
         if(estoque){
             res.status(200).json(
                 {
@@ -44,16 +44,30 @@ export function buscarNoEstoque (req: Request, res: Response){
     }
 };
 
-export function alterarEstoque (req: Request, res: Response){
+export function adicionaQuantidade (req: Request, res: Response){
     try{
-        const novoEstoque = estoqueService.alterarEstoque(req.body);
+        const novoEstoque = estoqueService.adicionaQuantidade(req.body);
         res.status(201).json(
             {
-                mensagem:"Item alterado no estoque com sucesso!",
+                mensagem:"Quantidade informada adicionada no estoque com sucesso!",
                 estoque: novoEstoque
             }
         );
     } catch (error: any){
         res.status(400).json({ message: error.message });
     }
-}
+};
+
+export function deletaQuantidade (req: Request, res: Response){
+    try{
+        const novoEstoque = estoqueService.deletaQuantidade(req.body);
+        res.status(201).json(
+            {
+                mensagem:"Quantidade informada deletada do estoque com sucesso!",
+                estoque: novoEstoque
+            }
+        );
+    } catch (error: any){
+        res.status(400).json({ message: error.message });
+    }
+};

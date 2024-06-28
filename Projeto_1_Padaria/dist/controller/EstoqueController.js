@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.alterarEstoque = exports.buscarNoEstoque = exports.listaEstoque = exports.cadastrarNoEstoque = void 0;
+exports.deletaQuantidade = exports.adicionaQuantidade = exports.buscarNoEstoque = exports.listaEstoque = exports.cadastrarNoEstoque = void 0;
 const EstoqueService_1 = require("../service/EstoqueService");
 const estoqueService = new EstoqueService_1.EstoqueService();
 function cadastrarNoEstoque(req, res) {
@@ -29,7 +29,7 @@ exports.listaEstoque = listaEstoque;
 ;
 function buscarNoEstoque(req, res) {
     try {
-        const estoque = estoqueService.consultarEstoque(req.query.id);
+        const estoque = estoqueService.consultarEstoquePorId(req.query.id);
         if (estoque) {
             res.status(200).json({
                 mensagem: "Item encontrado no estoque com sucesso!",
@@ -46,11 +46,11 @@ function buscarNoEstoque(req, res) {
 }
 exports.buscarNoEstoque = buscarNoEstoque;
 ;
-function alterarEstoque(req, res) {
+function adicionaQuantidade(req, res) {
     try {
-        const novoEstoque = estoqueService.alterarEstoque(req.body);
+        const novoEstoque = estoqueService.adicionaQuantidade(req.body);
         res.status(201).json({
-            mensagem: "Item alterado no estoque com sucesso!",
+            mensagem: "Quantidade informada adicionada no estoque com sucesso!",
             estoque: novoEstoque
         });
     }
@@ -58,4 +58,19 @@ function alterarEstoque(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.alterarEstoque = alterarEstoque;
+exports.adicionaQuantidade = adicionaQuantidade;
+;
+function deletaQuantidade(req, res) {
+    try {
+        const novoEstoque = estoqueService.deletaQuantidade(req.body);
+        res.status(201).json({
+            mensagem: "Quantidade informada deletada do estoque com sucesso!",
+            estoque: novoEstoque
+        });
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+exports.deletaQuantidade = deletaQuantidade;
+;

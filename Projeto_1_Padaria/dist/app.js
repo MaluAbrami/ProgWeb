@@ -21,5 +21,6 @@ app.get("/api/modalidade", ModalidadesController_1.recuperaModalidade);
 app.post("/api/estoque", EstoqueController_1.cadastrarNoEstoque);
 app.get("/api/estoque/todos", EstoqueController_1.listaEstoque);
 app.get("/api/estoque", EstoqueController_1.buscarNoEstoque);
-app.put("/api/estoque", EstoqueController_1.alterarEstoque);
+app.put("/api/estoque", EstoqueController_1.adicionaQuantidade);
+app.delete("/api/estoque", EstoqueController_1.deletaQuantidade);
 app.listen(PORT, logInfo);
