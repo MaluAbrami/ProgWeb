@@ -1,12 +1,14 @@
+import { ItemVenda } from "./ItemVenda";
+
 export class VendaPaes{
     cpf:number;
     id:number;
-    quantidade:number;
+    itens:ItemVenda[];
     valor:number;
 
-    constructor(cpf:number, quantidade:number, valor:number){
+    constructor(cpf:number, itens:ItemVenda[], valor: number){
         this.cpf = cpf;
-        this.quantidade = quantidade;
+        this.itens = itens;
         this.valor = valor;
         this.id = this.geraId();
     }
