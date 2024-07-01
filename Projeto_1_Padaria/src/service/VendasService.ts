@@ -22,4 +22,12 @@ export class VendasService{
         this.vendasRepository.gravaVenda(novaVenda);
         return novaVenda;
     }
+
+    recuperaVenda(id: any): VendaPaes| undefined{
+        if(!id){
+            throw new Error("Informações incompletas!");
+        }
+        const idNumber = parseInt(id, 10)
+        return this.vendasRepository.filtraVendaPorId(idNumber);
+    }
 }

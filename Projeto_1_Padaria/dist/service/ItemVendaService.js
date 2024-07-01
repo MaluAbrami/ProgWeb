@@ -38,9 +38,6 @@ class ItemVendaService {
     }
     somarValor(itemVendaData) {
         const { estoquePaesId, quantidade } = itemVendaData;
-        console.log(estoquePaesId);
-        console.log(quantidade);
-        console.log(this.estoqueRepository.estoqueList);
         const itemEncontrado = this.estoqueRepository.filtraEstoquePorId(estoquePaesId);
         if (!itemEncontrado) {
             throw new Error("Item não existe no estoque, portanto não possui preço cadastrado!");

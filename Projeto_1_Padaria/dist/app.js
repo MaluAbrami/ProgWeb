@@ -25,4 +25,5 @@ app.get("/api/estoque", EstoqueController_1.buscarNoEstoque);
 app.put("/api/estoque", EstoqueController_1.adicionaQuantidade);
 app.delete("/api/estoque", EstoqueController_1.deletaQuantidade);
 app.post("/api/venda", VendasController_1.registrarVenda);
+app.get("/api/venda", VendasController_1.recuperaVenda);
 app.listen(PORT, logInfo);

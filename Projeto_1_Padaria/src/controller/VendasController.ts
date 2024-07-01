@@ -18,3 +18,16 @@ export function registrarVenda(req: Request, res: Response){
         res.status(400).json({ message: error.message });
     }
 };
+
+export function recuperaVenda(req: Request, res: Response){
+    try{
+        const vendaEncontrada = vendasService.recuperaVenda(req.query.id);
+        res.status(200).json(
+            {
+                venda: vendaEncontrada
+            }
+        );
+    } catch (error: any){
+        res.status(404).json({ message: error.message });
+    }
+}

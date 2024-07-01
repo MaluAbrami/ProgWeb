@@ -9,5 +9,8 @@ class VendasRepository {
     gravaVenda(venda) {
         return this.vendasList.push(venda);
     }
+    filtraVendaPorId(id) {
+        return this.vendasList.find(venda => venda.id === id);
+    }
 }
 exports.VendasRepository = VendasRepository;

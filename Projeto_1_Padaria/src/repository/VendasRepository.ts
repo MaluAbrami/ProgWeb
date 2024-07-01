@@ -8,4 +8,8 @@ export class VendasRepository{
     gravaVenda(venda: VendaPaes){
         return this.vendasList.push(venda);
     }
+
+    filtraVendaPorId(id: number){
+        return this.vendasList.find(venda => venda.id === id);
+    }
 }

@@ -44,11 +44,6 @@ export class ItemVendaService{
     somarValor(itemVendaData: any): number{
         const {estoquePaesId, quantidade} = itemVendaData;
 
-        console.log(estoquePaesId);
-        console.log(quantidade);
-
-        console.log(this.estoqueRepository.estoqueList);
-
         const itemEncontrado = this.estoqueRepository.filtraEstoquePorId(estoquePaesId);
     
         if(!itemEncontrado){
