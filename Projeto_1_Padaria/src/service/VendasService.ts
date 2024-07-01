@@ -13,7 +13,7 @@ export class VendasService{
             throw new Error("Informações incompletas.");
         }
 
-        let valor: any;
+        let valor: number = 0;
         for(let i=0; i<itens.length; i++){
             valor += this.itemVendaService.somarValor(itens[i]);
         }

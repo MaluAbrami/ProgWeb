@@ -4,7 +4,7 @@ exports.ModalidadesRepository = void 0;
 const global_1 = require("../global/global");
 class ModalidadesRepository {
     constructor() {
-        this.modalidadesList = (0, global_1.modalidadePaes)();
+        this.modalidadesList = (0, global_1.getModalidadesList)();
     }
     insereModalidade(modalidade) {
         this.modalidadesList.push(modalidade);

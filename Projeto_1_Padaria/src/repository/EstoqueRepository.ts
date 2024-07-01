@@ -1,8 +1,8 @@
 import { EstoquePaes } from "../model/Estoque";
-import { estoquePaes } from "../global/global";
+import { getEstoqueList } from "../global/global";
 
 export class EstoqueRepository {
-    estoqueList: EstoquePaes[] = estoquePaes();
+    estoqueList: EstoquePaes[] = getEstoqueList();
 
     insereNoEstoque(estoque: EstoquePaes){
         this.estoqueList.push(estoque);

@@ -1,9 +1,9 @@
 import { ItemVenda } from "../model/ItemVenda";
-import { estoquePaes, itemVenda } from "../global/global";
+import { getItemVendaList } from "../global/global";
 
 export class ItemVendaRepository {
 
-    itemVendaList: ItemVenda[] = itemVenda();
+    itemVendaList: ItemVenda[] = getItemVendaList();
 
     gravaItensVendidos(itemVenda: ItemVenda){
         return this.itemVendaList.push(itemVenda);

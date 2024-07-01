@@ -3,23 +3,23 @@ import { EstoquePaes } from "../model/Estoque";
 import { VendaPaes } from "../model/Vendas";
 import { ItemVenda } from "../model/ItemVenda";
 
+const modalidadesList: ModalidadePaes[] = [];
+const estoqueList: EstoquePaes[] = [];
+const vendasList: VendaPaes[] = [];
+const itemVendaList: ItemVenda[] = [];
 
-export function modalidadePaes(): ModalidadePaes[]{
-    const modalidadesList: ModalidadePaes[] = [];
+export function getModalidadesList(): ModalidadePaes[]{
     return modalidadesList;
 }
 
-export function estoquePaes(): EstoquePaes[]{
-    const estoqueList: EstoquePaes[] = [];
+export function getEstoqueList(): EstoquePaes[]{
     return estoqueList;
 }
 
-export function vendaPaes(): VendaPaes[]{
-    const vendasList: VendaPaes[] = [];
+export function getVendasList(): VendaPaes[]{
     return vendasList;
 }
 
-export function itemVenda(): ItemVenda[]{
-    const itemVendaList: ItemVenda[] = [];
+export function getItemVendaList(): ItemVenda[]{
     return itemVendaList;
 }

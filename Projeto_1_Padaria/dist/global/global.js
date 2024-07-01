@@ -1,23 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.itemVenda = exports.vendaPaes = exports.estoquePaes = exports.modalidadePaes = void 0;
-function modalidadePaes() {
-    const modalidadesList = [];
+exports.getItemVendaList = exports.getVendasList = exports.getEstoqueList = exports.getModalidadesList = void 0;
+const modalidadesList = [];
+const estoqueList = [];
+const vendasList = [];
+const itemVendaList = [];
+function getModalidadesList() {
     return modalidadesList;
 }
-exports.modalidadePaes = modalidadePaes;
-function estoquePaes() {
-    const estoqueList = [];
+exports.getModalidadesList = getModalidadesList;
+function getEstoqueList() {
     return estoqueList;
 }
-exports.estoquePaes = estoquePaes;
-function vendaPaes() {
-    const vendasList = [];
+exports.getEstoqueList = getEstoqueList;
+function getVendasList() {
     return vendasList;
 }
-exports.vendaPaes = vendaPaes;
-function itemVenda() {
-    const itemVendaList = [];
+exports.getVendasList = getVendasList;
+function getItemVendaList() {
     return itemVendaList;
 }
-exports.itemVenda = itemVenda;
+exports.getItemVendaList = getItemVendaList;

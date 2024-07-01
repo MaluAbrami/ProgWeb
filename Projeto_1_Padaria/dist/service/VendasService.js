@@ -14,7 +14,7 @@ class VendasService {
         if (!cpf || !itens || itens.length === 0) {
             throw new Error("Informações incompletas.");
         }
-        let valor;
+        let valor = 0;
         for (let i = 0; i < itens.length; i++) {
             valor += this.itemVendaService.somarValor(itens[i]);
         }

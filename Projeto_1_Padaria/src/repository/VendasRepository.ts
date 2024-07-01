@@ -1,9 +1,9 @@
 import { VendaPaes } from "../model/Vendas";
-import { vendaPaes } from "../global/global";
+import { getVendasList } from "../global/global";
 
 export class VendasRepository{
 
-    vendasList: VendaPaes[] = vendaPaes();
+    vendasList: VendaPaes[] = getVendasList();
 
     gravaVenda(venda: VendaPaes){
         return this.vendasList.push(venda);

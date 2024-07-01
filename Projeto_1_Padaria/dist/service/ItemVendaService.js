@@ -16,9 +16,23 @@ class ItemVendaService {
             if (!estoquePaesId || !quantidade) {
                 throw new Error("Informações incompletas.");
             }
-            const novoRegistro = new ItemVenda_1.ItemVenda(estoquePaesId, quantidade);
-            this.itemVendaRepository.gravaItensVendidos(novoRegistro);
-            itensRegistrados.push(novoRegistro);
+            const estoquePaesIdEncontrado = this.estoqueRepository.filtraEstoquePorId(estoquePaesId);
+            if (estoquePaesIdEncontrado) {
+                const quantidadeNoEstoque = estoquePaesIdEncontrado.quantidade;
+                if (quantidadeNoEstoque >= quantidade) { //Se houver quantidade suficiente, registra o item vendido e deleta quantidade no estoque
+                    const novoRegistro = new ItemVenda_1.ItemVenda(estoquePaesId, quantidade);
+                    this.itemVendaRepository.gravaItensVendidos(novoRegistro);
+                    itensRegistrados.push(novoRegistro);
+                    estoquePaesIdEncontrado.quantidade = quantidadeNoEstoque - quantidade; //Atualiza a quantidade do item 
+                    this.estoqueRepository.alterarEstoque(estoquePaesIdEncontrado); //Altera a quantidade do item no estoque de acordo com o que foi vendido
+                }
+                else {
+                    throw new Error("Saldo insuficiente do item no estoque!");
+                }
+            }
+            else {
+                throw new Error("Item não cadastrado no estoque!");
+            }
         });
         return itensRegistrados;
     }

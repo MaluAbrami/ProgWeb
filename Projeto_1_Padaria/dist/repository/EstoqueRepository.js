@@ -4,7 +4,7 @@ exports.EstoqueRepository = void 0;
 const global_1 = require("../global/global");
 class EstoqueRepository {
     constructor() {
-        this.estoqueList = (0, global_1.estoquePaes)();
+        this.estoqueList = (0, global_1.getEstoqueList)();
     }
     insereNoEstoque(estoque) {
         this.estoqueList.push(estoque);

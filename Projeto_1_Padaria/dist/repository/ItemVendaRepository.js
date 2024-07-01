@@ -4,7 +4,7 @@ exports.ItemVendaRepository = void 0;
 const global_1 = require("../global/global");
 class ItemVendaRepository {
     constructor() {
-        this.itemVendaList = (0, global_1.itemVenda)();
+        this.itemVendaList = (0, global_1.getItemVendaList)();
     }
     gravaItensVendidos(itemVenda) {
         return this.itemVendaList.push(itemVenda);

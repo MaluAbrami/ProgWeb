@@ -1,8 +1,8 @@
 import { ModalidadePaes } from "../model/Modalidades";
-import { modalidadePaes } from "../global/global";
+import { getModalidadesList } from "../global/global";
 
 export class ModalidadesRepository{
-    modalidadesList: ModalidadePaes[] = modalidadePaes();
+    modalidadesList: ModalidadePaes[] = getModalidadesList();
 
     insereModalidade(modalidade: ModalidadePaes){
         this.modalidadesList.push(modalidade);
