@@ -3,23 +3,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EstoqueService = void 0;
 const Estoque_1 = require("../model/Estoque");
 const EstoqueRepository_1 = require("../repository/EstoqueRepository");
+const ModalidadesRepository_1 = require("../repository/ModalidadesRepository");
 class EstoqueService {
     constructor() {
         this.estoqueRepository = new EstoqueRepository_1.EstoqueRepository();
+        this.modalidadeRepository = new ModalidadesRepository_1.ModalidadesRepository();
     }
     cadastrarNoEstoque(estoqueData) {
         const { modalidadeId, quantidade, price } = estoqueData;
         if (!modalidadeId || !quantidade || !price) {
             throw new Error("Informações incompletas");
         }
-        const estoqueEncontrado = this.consultarEstoquePorModalidadeId(modalidadeId);
-        if (estoqueEncontrado) {
-            throw new Error("Esta modalidade já existe no estoque!");
+        const modalidadeIdEncontrada = this.modalidadeRepository.filtraModalidadePorId(modalidadeId);
+        if (modalidadeIdEncontrada) {
+            const estoqueEncontrado = this.consultarEstoquePorModalidadeId(modalidadeId);
+            if (estoqueEncontrado) {
+                throw new Error("Esta modalidade já existe no estoque!");
+            }
+            else { //Se não existir itens iguais, criamos um um lugar no estoque para o item novo
+                const novoEstoque = new Estoque_1.EstoquePaes(modalidadeId, quantidade, price);
+                this.estoqueRepository.insereNoEstoque(novoEstoque);
+                return novoEstoque;
+            }
         }
-        else { //Se não existir itens iguais, criamos um um lugar no estoque para o item novo
-            const novoEstoque = new Estoque_1.EstoquePaes(modalidadeId, quantidade, price);
-            this.estoqueRepository.insereNoEstoque(novoEstoque);
-            return novoEstoque;
+        else {
+            throw new Error("Esta modalidade não existe!");
         }
     }
     getEstoque() {

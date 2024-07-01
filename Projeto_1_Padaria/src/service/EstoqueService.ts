@@ -1,25 +1,31 @@
 import { parse } from "qs";
 import { EstoquePaes } from "../model/Estoque";
 import { EstoqueRepository } from "../repository/EstoqueRepository";
+import { ModalidadesRepository } from "../repository/ModalidadesRepository";
 
 export class EstoqueService{
-
     estoqueRepository: EstoqueRepository = new EstoqueRepository();
+    modalidadeRepository: ModalidadesRepository = new ModalidadesRepository()
 
     cadastrarNoEstoque(estoqueData: any): EstoquePaes|undefined{
         const {modalidadeId, quantidade, price} = estoqueData;
         if(!modalidadeId || !quantidade || !price){
             throw new Error("Informações incompletas");
         }
-
-        const estoqueEncontrado = this.consultarEstoquePorModalidadeId(modalidadeId); 
-        if(estoqueEncontrado){
-            throw new Error("Esta modalidade já existe no estoque!");
+        const modalidadeIdEncontrada = this.modalidadeRepository.filtraModalidadePorId(modalidadeId);
+        if(modalidadeIdEncontrada){
+            const estoqueEncontrado = this.consultarEstoquePorModalidadeId(modalidadeId); 
+            if(estoqueEncontrado){
+                throw new Error("Esta modalidade já existe no estoque!");
+            }
+            else{ //Se não existir itens iguais, criamos um um lugar no estoque para o item novo
+                const novoEstoque = new EstoquePaes(modalidadeId, quantidade, price);
+                this.estoqueRepository.insereNoEstoque(novoEstoque);
+                return novoEstoque;
+            }
         }
-        else{ //Se não existir itens iguais, criamos um um lugar no estoque para o item novo
-            const novoEstoque = new EstoquePaes(modalidadeId, quantidade, price);
-            this.estoqueRepository.insereNoEstoque(novoEstoque);
-            return novoEstoque;
+        else{
+            throw new Error("Esta modalidade não existe!");
         }
     }
 
