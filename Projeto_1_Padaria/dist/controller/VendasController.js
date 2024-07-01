@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.recuperaVenda = exports.registrarVenda = void 0;
+exports.registrarVenda = registrarVenda;
+exports.recuperaVenda = recuperaVenda;
 const VendasService_1 = require("../service/VendasService");
 const ItemVendaService_1 = require("../service/ItemVendaService");
 const vendasService = new VendasService_1.VendasService();
@@ -17,7 +18,6 @@ function registrarVenda(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.registrarVenda = registrarVenda;
 ;
 function recuperaVenda(req, res) {
     try {
@@ -30,4 +30,3 @@ function recuperaVenda(req, res) {
         res.status(404).json({ message: error.message });
     }
 }
-exports.recuperaVenda = recuperaVenda;

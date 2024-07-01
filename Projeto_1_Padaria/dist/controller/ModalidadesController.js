@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.recuperaModalidade = exports.deletaModalidade = exports.alterarModalidade = exports.listarModalidades = exports.cadastrarModalidade = void 0;
+exports.cadastrarModalidade = cadastrarModalidade;
+exports.listarModalidades = listarModalidades;
+exports.alterarModalidade = alterarModalidade;
+exports.deletaModalidade = deletaModalidade;
+exports.recuperaModalidade = recuperaModalidade;
 const ModalidadesService_1 = require("../service/ModalidadesService");
 const modalidadesService = new ModalidadesService_1.ModalidadesService();
 function cadastrarModalidade(req, res) {
@@ -15,7 +19,6 @@ function cadastrarModalidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.cadastrarModalidade = cadastrarModalidade;
 ;
 function listarModalidades(req, res) {
     try {
@@ -25,7 +28,6 @@ function listarModalidades(req, res) {
         res.status(404).json({ message: error.message });
     }
 }
-exports.listarModalidades = listarModalidades;
 ;
 function alterarModalidade(req, res) {
     try {
@@ -39,7 +41,6 @@ function alterarModalidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.alterarModalidade = alterarModalidade;
 ;
 function deletaModalidade(req, res) {
     try {
@@ -50,7 +51,6 @@ function deletaModalidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.deletaModalidade = deletaModalidade;
 ;
 function recuperaModalidade(req, res) {
     try {
@@ -70,4 +70,3 @@ function recuperaModalidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.recuperaModalidade = recuperaModalidade;

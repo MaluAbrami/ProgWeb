@@ -6,7 +6,7 @@ export class ItemVendaService{
 
     itemVendaRepository: ItemVendaRepository = new ItemVendaRepository();
     estoqueRepository: EstoqueRepository = new EstoqueRepository();
-
+/*
     cadastrarItensVendidos(itemVendaData: any[]): ItemVenda[]{
         const itensRegistrados: ItemVenda[] = [];
 
@@ -40,6 +40,52 @@ export class ItemVendaService{
         })
         return itensRegistrados;
     }
+*/
+
+    cadastrarItensVendidos(itemVendaData: any[]): ItemVenda[]{
+        const itensRegistrados: ItemVenda[] = [];
+        let aux: boolean = false;
+        
+        itemVendaData.forEach(itemVendaData =>{ //Aqui garantimos primeiro que todos os itens da lista de venda tem quantidade suficiente disponível no estoque
+            const {estoquePaesId, quantidade} = itemVendaData;
+            if(!estoquePaesId || !quantidade || quantidade <= 0){
+                throw new Error("Informações incompletas");
+            }
+            const itemVendaEncontrado = this.estoqueRepository.filtraEstoquePorId(estoquePaesId);
+
+            if(itemVendaEncontrado){ //Se o item existir no estoque, verificamos se há quantidade suficiente disponível no estoque
+                const quantidadeNoEstoque = itemVendaEncontrado.quantidade;
+                if(quantidadeNoEstoque >= quantidade){ //aux será true se todos os itens na lista tiverem saldo disponivel no estoque
+                    aux = true;
+                }
+                else{
+                    throw new Error("Não há saldo disponível suficiente no estoque!");
+                }
+            }
+            else{
+                throw new Error("Item não está cadastrado no estoque!");
+            }
+        })
+
+        if(aux){ //Depois de garantir que há quantidade disponível para todos os itens da lista de venda, registramos os itens vendidos da lista
+            itemVendaData.forEach(itemVendaData =>{
+                const {estoquePaesId, quantidade} = itemVendaData;
+                const estoquePaesIdEncontrado = this.estoqueRepository.filtraEstoquePorId(estoquePaesId);
+                if(estoquePaesIdEncontrado){
+                    estoquePaesIdEncontrado.quantidade -= quantidade;
+                }
+
+                const novoRegistro = new ItemVenda(estoquePaesId, quantidade);
+                this.itemVendaRepository.gravaItensVendidos(novoRegistro);
+                itensRegistrados.push(novoRegistro);
+            })
+        }
+        else{
+            throw new Error("Não há saldo disponível suficiente no estoque!");
+        }
+
+        return itensRegistrados;
+    }
 
     somarValor(itemVendaData: any): number{
         const {estoquePaesId, quantidade} = itemVendaData;
@@ -49,7 +95,6 @@ export class ItemVendaService{
         if(!itemEncontrado){
             throw new Error("Item não existe no estoque, portanto não possui preço cadastrado!");
         }
-        console.log(itemEncontrado);
         const itemVendaValor = itemEncontrado.price * quantidade;
         return itemVendaValor;
     }

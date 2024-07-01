@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletaQuantidade = exports.adicionaQuantidade = exports.buscarNoEstoque = exports.listaEstoque = exports.cadastrarNoEstoque = void 0;
+exports.cadastrarNoEstoque = cadastrarNoEstoque;
+exports.listaEstoque = listaEstoque;
+exports.buscarNoEstoque = buscarNoEstoque;
+exports.adicionaQuantidade = adicionaQuantidade;
+exports.deletaQuantidade = deletaQuantidade;
 const EstoqueService_1 = require("../service/EstoqueService");
 const estoqueService = new EstoqueService_1.EstoqueService();
 function cadastrarNoEstoque(req, res) {
@@ -15,7 +19,6 @@ function cadastrarNoEstoque(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.cadastrarNoEstoque = cadastrarNoEstoque;
 ;
 function listaEstoque(req, res) {
     try {
@@ -25,7 +28,6 @@ function listaEstoque(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.listaEstoque = listaEstoque;
 ;
 function buscarNoEstoque(req, res) {
     try {
@@ -44,7 +46,6 @@ function buscarNoEstoque(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.buscarNoEstoque = buscarNoEstoque;
 ;
 function adicionaQuantidade(req, res) {
     try {
@@ -58,7 +59,6 @@ function adicionaQuantidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.adicionaQuantidade = adicionaQuantidade;
 ;
 function deletaQuantidade(req, res) {
     try {
@@ -72,5 +72,4 @@ function deletaQuantidade(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-exports.deletaQuantidade = deletaQuantidade;
 ;
