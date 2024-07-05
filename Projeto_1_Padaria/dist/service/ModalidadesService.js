@@ -34,25 +34,27 @@ class ModalidadesService {
         return this.modalidadesRepository.filtraTodasModalidades();
     }
     alterarModalidade(modalidadeData) {
-        const { name, vegano } = modalidadeData;
-        if (!name) {
+        const { id, name, vegano } = modalidadeData;
+        if (!id || !name) {
             throw new Error("Informações incompletas");
         }
-        let modalidadeEncontrada = this.consultarModalidade(name);
+        let modalidadeEncontrada = this.consultarModalidadePorId(id);
         if (!modalidadeEncontrada) {
             throw new Error("Produto não cadastrado!");
         }
+        modalidadeEncontrada.name = name;
         modalidadeEncontrada.vegano = vegano;
         this.modalidadesRepository.alterarModalidade(modalidadeEncontrada);
         return modalidadeEncontrada;
     }
     deletaModalidade(modalidadeData) {
-        const { name, vegano } = modalidadeData;
-        if (!name) {
+        const { id, name, vegano } = modalidadeData;
+        if (!id || !name) {
             throw new Error("Informações incompletas");
         }
-        let modalidadeEncontrada = this.consultarModalidade(name);
-        if (!modalidadeEncontrada) {
+        let modalidadeEncontrada = this.consultarModalidadePorId(id);
+        let modalidadeNameEncontrado = this.consultarModalidade(name);
+        if (!modalidadeEncontrada || !modalidadeNameEncontrado) {
             throw new Error("Modalidade não encontrada");
         }
         this.modalidadesRepository.deletaModalidade(modalidadeEncontrada);

@@ -8,6 +8,16 @@ export class ModalidadesRepository{
         this.modalidadesList.push(modalidade);
     }
 
+    retornaModalidadeName(id: number){
+        const modalidade = this.filtraModalidadePorId(id);
+        if(modalidade){
+            return modalidade.name;
+        }
+        else{
+            throw new Error("Modalidade não existe");
+        }
+    }
+
     filtraModalidadePorId(id: number): ModalidadePaes|undefined{
         return this.modalidadesList.find(modalidade => modalidade.id === id);
     }

@@ -9,6 +9,15 @@ class ModalidadesRepository {
     insereModalidade(modalidade) {
         this.modalidadesList.push(modalidade);
     }
+    retornaModalidadeName(id) {
+        const modalidade = this.filtraModalidadePorId(id);
+        if (modalidade) {
+            return modalidade.name;
+        }
+        else {
+            throw new Error("Modalidade não existe");
+        }
+    }
     filtraModalidadePorId(id) {
         return this.modalidadesList.find(modalidade => modalidade.id === id);
     }
