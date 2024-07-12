@@ -40,6 +40,17 @@ export class LivroService{
         }
 
         const livro = await this.livroRepository.updateLivro(id, title, author, publishedDate, isbn, pages, language, publisher);
+        console.log("Service - Update", livro);
+        return livro;
+    }
+
+    async deletarLivro(livroData: any): Promise<Livro>{
+        const {id, title, author, publishedDate, isbn, pages, language, publisher} = livroData;
+        if(!id || !title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
+            throw new Error("Informações incompletas");
+        }
+
+        const livro = await this.livroRepository.deleteLivro(id, title, author, publishedDate, isbn, pages, language, publisher);
         console.log("Service - Delete", livro);
         return livro;
     }
