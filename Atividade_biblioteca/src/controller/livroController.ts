@@ -43,4 +43,18 @@ export async function filtrarLivro(req: Request, res: Response) {
     } catch(error: any){
         res.status(400).json({ message: error.message });
     }
-}
+};
+
+export async function atualizarLivro(req: Request, res: Response) {
+    try{
+        const livro = await livroService.atualizarLivro(req.body);
+        res.status(200).json(
+            {
+                mensagem: "Livro atualizado com sucesso",
+                livro: livro
+            }
+        );
+    } catch(error: any){
+        res.status(400).json({ message: error.message });
+    }
+};
