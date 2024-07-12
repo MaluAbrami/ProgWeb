@@ -56,4 +56,19 @@ export class LivroRepository{
             throw err;
         }
     }
+
+    async filterLivro(id: number) :Promise<Livro>{
+        const query = "SELECT * FROM livros.livro where id = ?" ;
+
+        try {
+            const resultado = await executarComandoSQL(query, [id]);
+            console.log('Livro localizado com sucesso, ID: ', resultado);
+            return new Promise<Livro>((resolve)=>{
+                resolve(resultado);
+            })
+        } catch (err:any) {
+            console.error(`Falha ao procurar o livro de ID ${id} gerando o erro: ${err}`);
+            throw err;
+        }
+    }
 }
