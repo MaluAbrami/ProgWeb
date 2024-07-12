@@ -29,4 +29,18 @@ export async function listarTodosProdutos (req: Request, res: Response) {
     } catch(error: any){
         res.status(400).json({ message: error.message });
     }
+};
+
+export async function filtrarLivro(req: Request, res: Response) {
+    try{
+        const livro = await livroService.filtrarLivro(req.query.id);
+        res.status(200).json(
+            {
+                mensagem: "Livro encontrado com sucesso!",
+                livro: livro
+            }
+        );
+    } catch(error: any){
+        res.status(400).json({ message: error.message });
+    }
 }
