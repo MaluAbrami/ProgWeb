@@ -1,4 +1,5 @@
 export class Livro {
+    id: number;
     title: string;
     author: string;
     publishedDate: string;
@@ -15,5 +16,10 @@ export class Livro {
         this.pages = pages;
         this.language = language;
         this.publisher = publisher;
+        this.id = this.geraId();
+    }
+
+    private geraId():number{
+        return Date.now();
     }
 }
