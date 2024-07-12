@@ -71,4 +71,20 @@ export class LivroRepository{
             throw err;
         }
     }
+
+    async updateLivro(id:number, title: string, author: string, publishedDate: string, isbn: string, pages: number, language: string, publisher: string) :Promise<Livro>{
+        const query = "UPDATE livros.livro set title = ?, author = ?, publishedDate = ?, isbn = ?, pages = ?, language = ?, publisher = ?  where id = ?;" ;
+
+        try {
+            const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher, id]);
+            console.log('Livro atualizado com sucesso, ID: ', resultado);
+            const product = new Livro(title, author, publishedDate, isbn, pages, language, publisher);
+            return new Promise<Livro>((resolve)=>{
+                resolve(product);
+            })
+        } catch (err:any) {
+            console.error(`Erro ao atualizar o livro de ID ${id} gerando o erro: ${err}`);
+            throw err;
+        }
+    }
 }
