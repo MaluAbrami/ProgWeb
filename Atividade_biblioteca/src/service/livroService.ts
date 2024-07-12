@@ -21,4 +21,15 @@ export class LivroService{
         console.log("Service - Filtrar Todos", livro);
         return livro;
     }
+
+    async filtrarLivro(livroData: any): Promise<Livro>{
+        if(!livroData){
+            throw new Error("Informações incompletas");
+        }
+        const id = parseInt(livroData, 10);
+
+        const livro = await this.livroRepository.filterLivro(id);
+        console.log("Service - Filtrar", livro);
+        return livro;
+    }
 }
