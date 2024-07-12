@@ -15,4 +15,10 @@ export class LivroService{
         console.log("Service - Insert", novoLivro);
         return novoLivro;
     }
+
+    async listarTodosLivros(): Promise<Livro[]>{
+        const livro = await this.livroRepository.filterAllLivro();
+        console.log("Service - Filtrar Todos", livro);
+        return livro;
+    }
 }
