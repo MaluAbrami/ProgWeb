@@ -78,12 +78,28 @@ export class LivroRepository{
         try {
             const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher, id]);
             console.log('Livro atualizado com sucesso, ID: ', resultado);
-            const product = new Livro(title, author, publishedDate, isbn, pages, language, publisher);
+            const livro = new Livro(title, author, publishedDate, isbn, pages, language, publisher);
             return new Promise<Livro>((resolve)=>{
-                resolve(product);
+                resolve(livro);
             })
         } catch (err:any) {
             console.error(`Erro ao atualizar o livro de ID ${id} gerando o erro: ${err}`);
+            throw err;
+        }
+    }
+
+    async deleteLivro(id:number, title: string, author: string, publishedDate: string, isbn: string, pages: number, language: string, publisher: string) :Promise<Livro>{
+        const query = "DELETE FROM livros.livro where id = ?;" ;
+
+        try {
+            const resultado = await executarComandoSQL(query, [id]);
+            console.log('Produto deletado com sucesso, ID: ', resultado);
+            const livro = new Livro(title, author, publishedDate, isbn, pages, language, publisher);
+            return new Promise<Livro>((resolve)=>{
+                resolve(livro);
+            })
+        } catch (err:any) {
+            console.error(`Falha ao deletar o livro de ID ${id} gerando o erro: ${err}`);
             throw err;
         }
     }
