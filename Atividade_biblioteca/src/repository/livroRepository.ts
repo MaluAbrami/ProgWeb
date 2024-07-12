@@ -26,4 +26,20 @@ export class LivroRepository{
             console.error('Error');
         }
     }
+
+    async insertLivro(title: string, author: string, publishedDate: string, isbn: string, pages: number, language: string, publisher: string) :Promise<Livro>{
+        const query = "INSERT INTO vendas.Product (name, price) VALUES (?, ?)" ;
+
+        try {
+            const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher]);
+            console.log('Produto inserido com sucesso, ID: ', resultado.insertId);
+            const livro = new Livro(title, author, publishedDate, isbn, pages, language, publisher);
+            return new Promise<Livro>((resolve)=>{
+                resolve(livro);
+            })
+        } catch (err) {
+            console.error('Erro ao inserir o livro:', err);
+            throw err;
+        }
+    }
 }
