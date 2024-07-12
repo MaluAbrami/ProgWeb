@@ -15,4 +15,18 @@ export async function cadastrarLivro (req: Request, res: Response) {
     } catch(error: any){
         res.status(400).json({ message: error.message });
     }
+};
+
+export async function listarTodosProdutos (req: Request, res: Response) {
+    try{
+        const livros = await livroService.listarTodosLivros();
+        res.status(200).json(
+            {
+                mensagem: "Livros listados com sucesso!",
+                livros: livros
+            }
+        );
+    } catch(error: any){
+        res.status(400).json({ message: error.message });
+    }
 }
