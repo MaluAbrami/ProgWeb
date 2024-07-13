@@ -65,7 +65,8 @@ export class LivroService{
         }
 
         const isbnEncontrado = await this.livroRepository.filtrarLivroPorIsbn(livroData.isbn);
-        if(isbnEncontrado){
+        console.log("isbn", isbnEncontrado);
+        if(isbnEncontrado.isbn == isbn){
             throw new Error("isbn já cadastrado");
         }
         return isbnEncontrado;
