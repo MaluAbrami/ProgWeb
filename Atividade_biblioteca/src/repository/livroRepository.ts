@@ -10,6 +10,7 @@ export class LivroRepository{
     private async createTable() {
         const query = `
         CREATE TABLE IF NOT EXISTS Livros.Livro (
+            id INT AUTO_INCREMENT PRIMARY KEY,
             title VARCHAR(255) NOT NULL,
             author VARCHAR(255) NOT NULL,
             publishedDate VARCHAR(255) NOT NULL,
@@ -28,12 +29,12 @@ export class LivroRepository{
     }
 
     async insertLivro(title: string, author: string, publishedDate: string, isbn: string, pages: number, language: string, publisher: string) :Promise<Livro>{
-        const query = "INSERT INTO vendas.Product (name, price) VALUES (?, ?)" ;
+        const query = "INSERT INTO livros.livro (title, author, publishedDate, isbn, pages, language, publisher) VALUES (?, ?)" ;
 
         try {
             const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher]);
             console.log('Produto inserido com sucesso, ID: ', resultado.insertId);
-            const livro = new Livro(title, author, publishedDate, isbn, pages, language, publisher);
+            const livro = new Livro(resultado.insertId, title, author, publishedDate, isbn, pages, language, publisher);
             return new Promise<Livro>((resolve)=>{
                 resolve(livro);
             })
@@ -78,7 +79,7 @@ export class LivroRepository{
         try {
             const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher, id]);
             console.log('Livro atualizado com sucesso, ID: ', resultado);
-            const livro = new Livro(title, author, publishedDate, isbn, pages, language, publisher);
+            const livro = new Livro(id, title, author, publishedDate, isbn, pages, language, publisher);
             return new Promise<Livro>((resolve)=>{
                 resolve(livro);
             })
@@ -94,7 +95,7 @@ export class LivroRepository{
         try {
             const resultado = await executarComandoSQL(query, [id]);
             console.log('Produto deletado com sucesso, ID: ', resultado);
-            const livro = new Livro(title, author, publishedDate, isbn, pages, language, publisher);
+            const livro = new Livro(id, title, author, publishedDate, isbn, pages, language, publisher);
             return new Promise<Livro>((resolve)=>{
                 resolve(livro);
             })
