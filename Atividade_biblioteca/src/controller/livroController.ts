@@ -17,7 +17,7 @@ export async function cadastrarLivro (req: Request, res: Response) {
     }
 };
 
-export async function listarTodosProdutos (req: Request, res: Response) {
+export async function listarTodosLivros (req: Request, res: Response) {
     try{
         const livros = await livroService.listarTodosLivros();
         res.status(200).json(
