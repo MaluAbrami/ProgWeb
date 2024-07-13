@@ -9,7 +9,7 @@ export class LivroRepository{
 
     private async createTable() {
         const query = `
-        CREATE TABLE IF NOT EXISTS Livros.Livro (
+        CREATE TABLE IF NOT EXISTS Livro.Livro (
             id INT AUTO_INCREMENT PRIMARY KEY,
             title VARCHAR(255) NOT NULL,
             author VARCHAR(255) NOT NULL,
@@ -29,7 +29,7 @@ export class LivroRepository{
     }
 
     async insertLivro(title: string, author: string, publishedDate: string, isbn: string, pages: number, language: string, publisher: string) :Promise<Livro>{
-        const query = "INSERT INTO livros.livro (title, author, publishedDate, isbn, pages, language, publisher) VALUES (?, ?)" ;
+        const query = "INSERT INTO livro.livro (title, author, publishedDate, isbn, pages, language, publisher) VALUES (?, ?)" ;
 
         try {
             const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher]);
@@ -45,7 +45,7 @@ export class LivroRepository{
     }
 
     async filterAllLivro() :Promise<Livro[]>{
-        const query = "SELECT * FROM livros.livro" ;
+        const query = "SELECT * FROM livro.livro" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);
