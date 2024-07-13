@@ -11,6 +11,8 @@ export class LivroService{
             throw new Error("Informações incompletas");
         }
 
+        const isbnEncontrado = await this.confirmarLivro(livroData);
+        
         const novoLivro = await this.livroRepository.insertLivro(title, author, publishedDate, isbn, pages, language, publisher);
         console.log("Service - Insert", novoLivro);
         return novoLivro;
@@ -55,6 +57,7 @@ export class LivroService{
         return livro;
     }
 
+    
     async confirmarLivro(livroData: any): Promise<Livro>{
         const {title, author, publishedDate, isbn, pages, language, publisher} = livroData;
         if(!title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
@@ -62,6 +65,9 @@ export class LivroService{
         }
 
         const isbnEncontrado = await this.livroRepository.filtrarLivroPorIsbn(livroData.isbn);
-        if(isbnEncontrado)
+        if(isbnEncontrado){
+            throw new Error("isbn já cadastrado");
+        }
+        return isbnEncontrado;
     }
 }

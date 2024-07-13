@@ -5,8 +5,6 @@ const livroService = new LivroService();
 
 export async function cadastrarLivro (req: Request, res: Response) {
     try{
-        const isbnEncontrado = await livroService.confirmarLivro(req.body);
-        if(!isbnEncontrado){
             const novoLivro = await livroService.cadastrarLivro(req.body);
             res.status(201).json(
                 {
@@ -14,12 +12,8 @@ export async function cadastrarLivro (req: Request, res: Response) {
                     livro: novoLivro
                 }
             );
-        }
-        else{
-            res.status(409).json();
-        }
     } catch(error: any){
-        res.status(400).json({ message: error.message });
+        res.status(409).json({ message: error.message });
     }
 };
 
