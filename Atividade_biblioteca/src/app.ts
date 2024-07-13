@@ -9,8 +9,8 @@ app.use(express.json());
 
 app.post("/api/books", cadastrarLivro);
 app.get("/api/books", listarTodosLivros);
-app.get("/api/books/:id", filtrarLivro);
-app.put("/api/books/:id", atualizarLivro);
-app.delete("/api/books/:id", deletarLivro);
+app.get("/api/book", filtrarLivro);
+app.put("/api/book", atualizarLivro);
+app.delete("/api/book", deletarLivro);
 
 app.listen(PORT, ()=> console.log("API online na porta: " + PORT));

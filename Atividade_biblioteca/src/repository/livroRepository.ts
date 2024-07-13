@@ -29,7 +29,7 @@ export class LivroRepository{
     }
 
     async insertLivro(title: string, author: string, publishedDate: string, isbn: string, pages: number, language: string, publisher: string) :Promise<Livro>{
-        const query = "INSERT INTO livro.livro (title, author, publishedDate, isbn, pages, language, publisher) VALUES (?, ?)" ;
+        const query = "INSERT INTO livro.livro (title, author, publishedDate, isbn, pages, language, publisher) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
 
         try {
             const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher]);
@@ -59,7 +59,7 @@ export class LivroRepository{
     }
 
     async filterLivro(id: number) :Promise<Livro>{
-        const query = "SELECT * FROM livros.livro where id = ?" ;
+        const query = "SELECT * FROM livro.livro where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
@@ -74,7 +74,7 @@ export class LivroRepository{
     }
 
     async updateLivro(id:number, title: string, author: string, publishedDate: string, isbn: string, pages: number, language: string, publisher: string) :Promise<Livro>{
-        const query = "UPDATE livros.livro set title = ?, author = ?, publishedDate = ?, isbn = ?, pages = ?, language = ?, publisher = ?  where id = ?;" ;
+        const query = "UPDATE livro.livro set title = ?, author = ?, publishedDate = ?, isbn = ?, pages = ?, language = ?, publisher = ?  where id = ?;" ;
 
         try {
             const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher, id]);
@@ -90,7 +90,7 @@ export class LivroRepository{
     }
 
     async deleteLivro(id:number, title: string, author: string, publishedDate: string, isbn: string, pages: number, language: string, publisher: string) :Promise<Livro>{
-        const query = "DELETE FROM livros.livro where id = ?;" ;
+        const query = "DELETE FROM livro.livro where id = ?;" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
