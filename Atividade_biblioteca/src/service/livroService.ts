@@ -54,4 +54,14 @@ export class LivroService{
         console.log("Service - Delete", livro);
         return livro;
     }
+
+    async confirmarLivro(livroData: any): Promise<Livro>{
+        const {title, author, publishedDate, isbn, pages, language, publisher} = livroData;
+        if(!title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
+            throw new Error("Informações incompletas");
+        }
+
+        const isbnEncontrado = await this.livroRepository.filtrarLivroPorIsbn(livroData.isbn);
+        if(isbnEncontrado)
+    }
 }

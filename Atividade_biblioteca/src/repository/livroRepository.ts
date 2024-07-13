@@ -94,13 +94,28 @@ export class LivroRepository{
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('Produto deletado com sucesso, ID: ', resultado);
+            console.log('Livro deletado com sucesso, ID: ', resultado);
             const livro = new Livro(id, title, author, publishedDate, isbn, pages, language, publisher);
             return new Promise<Livro>((resolve)=>{
                 resolve(livro);
             })
         } catch (err:any) {
             console.error(`Falha ao deletar o livro de ID ${id} gerando o erro: ${err}`);
+            throw err;
+        }
+    }
+
+    async filtrarLivroPorIsbn(isbn: string): Promise<Livro>{
+        const query = "SELECT * FROM livro.livro where isbn = ?;";
+
+        try{
+            const resultado = await executarComandoSQL(query, [isbn]);
+            console.log(`Livro com isbn ${isbn} já existe!`);
+            return new Promise<Livro>((resolve)=>{
+                resolve(resultado);
+            })
+        } catch(err: any){
+            console.error(`Falha ao buscar o isbn ${isbn} gerando o erro ${err}`);
             throw err;
         }
     }

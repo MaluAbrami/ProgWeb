@@ -5,13 +5,19 @@ const livroService = new LivroService();
 
 export async function cadastrarLivro (req: Request, res: Response) {
     try{
-        const novoLivro = await livroService.cadastrarLivro(req.body);
-        res.status(201).json(
-            {
-                mensagem: "Livro adicionado com sucesso!",
-                livro: novoLivro
-            }
-        );
+        const isbnEncontrado = await livroService.confirmarLivro(req.body);
+        if(!isbnEncontrado){
+            const novoLivro = await livroService.cadastrarLivro(req.body);
+            res.status(201).json(
+                {
+                    mensagem: "Livro adicionado com sucesso!",
+                    livro: novoLivro
+                }
+            );
+        }
+        else{
+            res.status(409).json();
+        }
     } catch(error: any){
         res.status(400).json({ message: error.message });
     }
