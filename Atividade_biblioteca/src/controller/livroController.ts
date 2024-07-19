@@ -27,7 +27,7 @@ export async function listarTodosLivros (req: Request, res: Response) {
             }
         );
     } catch(error: any){
-        res.status(400).json({ message: error.message });
+        res.status(404).json({ message: error.message });
     }
 };
 
@@ -41,7 +41,7 @@ export async function filtrarLivro(req: Request, res: Response) {
             }
         );
     } catch(error: any){
-        res.status(400).json({ message: error.message });
+        res.status(404).json({ message: error.message });
     }
 };
 
@@ -55,7 +55,7 @@ export async function atualizarLivro(req: Request, res: Response) {
             }
         );
     } catch(error: any){
-        res.status(400).json({ message: error.message });
+        res.status(404).json({ message: error.message });
     }
 };
 
@@ -69,6 +69,6 @@ export async function deletarLivro(req: Request, res: Response) {
             }
         );
     } catch(error: any){
-        res.status(400).json({ message: error.message });
+        res.status(404).json({ message: error.message });
     }
 };
