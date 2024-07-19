@@ -33,6 +33,9 @@ export class LivroService{
         const id = parseInt(livroData, 10);
 
         const livro = await this.livroRepository.filterLivro(id);
+        if(!livro){
+            throw new Error("Livro não encontrado!");
+        }
         console.log("Service - Filtrar", livro);
         return livro;
     }

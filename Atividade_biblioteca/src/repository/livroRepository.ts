@@ -63,10 +63,15 @@ export class LivroRepository{
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('Livro localizado com sucesso, ID: ', resultado);
-            return new Promise<Livro>((resolve)=>{
-                resolve(resultado);
-            })
+            if(resultado.id){
+                console.log('Livro localizado com sucesso, ID: ', resultado);
+                return new Promise<Livro>((resolve)=>{
+                    resolve(resultado);
+                })
+            }
+            else{
+                throw new Error("Livro não localizado!");
+            }
         } catch (err:any) {
             console.error(`Falha ao procurar o livro de ID ${id} gerando o erro: ${err}`);
             throw err;
