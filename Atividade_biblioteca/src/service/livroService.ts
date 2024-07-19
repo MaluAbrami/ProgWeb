@@ -12,7 +12,9 @@ export class LivroService{
         }
 
         const isbnEncontrado = await this.confirmarLivro(livroData);
-        
+        if(isbnEncontrado){
+            throw new Error("Já existe um livro com esse isbn!");
+        }
         const novoLivro = await this.livroRepository.insertLivro(title, author, publishedDate, isbn, pages, language, publisher);
         console.log("Service - Insert", novoLivro);
         return novoLivro;
@@ -65,7 +67,6 @@ export class LivroService{
         }
 
         const isbnEncontrado = await this.livroRepository.filtrarLivroPorIsbn(livroData.isbn);
-        console.log("isbn", isbnEncontrado);
         if(isbnEncontrado.isbn == isbn){
             throw new Error("isbn já cadastrado");
         }
