@@ -63,15 +63,10 @@ export class LivroRepository{
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            if(resultado.id){
-                console.log('Livro localizado com sucesso, ID: ', resultado);
-                return new Promise<Livro>((resolve)=>{
-                    resolve(resultado);
-                })
-            }
-            else{
-                throw new Error("Livro não localizado!");
-            }
+            console.log('Livro localizado com sucesso, ID: ', resultado);
+            return new Promise<Livro>((resolve)=>{
+                resolve(resultado);
+            })
         } catch (err:any) {
             console.error(`Falha ao procurar o livro de ID ${id} gerando o erro: ${err}`);
             throw err;
@@ -110,15 +105,18 @@ export class LivroRepository{
         }
     }
 
-    async filtrarLivroPorIsbn(isbn: string): Promise<Livro>{
+    async filtrarLivroPorIsbn(isbn: string): Promise<Livro | null>{
         const query = "SELECT * FROM livro.livro where isbn = ?;";
 
         try{
             const resultado = await executarComandoSQL(query, [isbn]);
-            console.log(`Livro com isbn ${isbn} já existe!`);
-            return new Promise<Livro>((resolve)=>{
-                resolve(resultado);
-            })
+            console.log(`Resultado da busca por ISBN ${isbn}:`, resultado);
+
+            if (resultado.length > 0) {
+                return resultado[0]; // Retorna o primeiro livro encontrado
+            } else {
+                return null; // Retorna null se nenhum livro for encontrado
+            }
         } catch(err: any){
             console.error(`Falha ao buscar o isbn ${isbn} gerando o erro ${err}`);
             throw err;

@@ -12,8 +12,9 @@ export class LivroService{
             throw new Error("Informações incompletas");
         }
 
-        const isbnEncontrado = await this.confirmarLivro(livroData);
-        if(isbnEncontrado){
+        const isbnEncontrado = await this.livroRepository.filtrarLivroPorIsbn(isbn);
+        console.log("Resultado isbnEncontrado:", isbnEncontrado);
+        if(isbnEncontrado && isbnEncontrado.isbn === isbn){
             throw new Error("Já existe um livro com esse isbn!");
         }
         const novoLivro = await this.livroRepository.insertLivro(title, author, publishedDate, isbn, pages, language, publisher);
@@ -46,19 +47,14 @@ export class LivroService{
         if(!id || !title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
             throw new Error("Informações incompletas");
         }
-        else if(this.livroModel.isNumber(id) || this.livroModel.isString(title) || this.livroModel.isString(author) || this.livroModel.isString(publishedDate) || this.livroModel.isString(isbn) || this.livroModel.isNumber(pages) || pages > 0 || this.livroModel.isString(language) || this.livroModel.isString(publisher)){
-            throw new Error("Informações inválidas!");
+        const livroEncontrado = await this.livroRepository.filterLivro(id);
+        if(!livroEncontrado){
+            throw new Error("Livro não existe");
         }
-        else{
-            const livroEncontrado = await this.livroRepository.filterLivro(id);
-            if(!livroEncontrado){
-                throw new Error("Livro não existe");
-            }
     
-            const livro = await this.livroRepository.updateLivro(id, title, author, publishedDate, isbn, pages, language, publisher);
-            console.log("Service - Update", livro);
-            return livro;
-        }
+        const livro = await this.livroRepository.updateLivro(id, title, author, publishedDate, isbn, pages, language, publisher);
+        console.log("Service - Update", livro);
+        return livro;
     }
 
     async deletarLivro(livroData: any): Promise<Livro>{
