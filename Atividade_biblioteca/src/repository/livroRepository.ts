@@ -58,15 +58,19 @@ export class LivroRepository{
         }
     }
 
-    async filterLivro(id: number) :Promise<Livro>{
+    async filterLivro(id: number) :Promise<Livro | null>{
         const query = "SELECT * FROM livro.livro where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('Livro localizado com sucesso, ID: ', resultado);
-            return new Promise<Livro>((resolve)=>{
-                resolve(resultado);
-            })
+            console.log(`Resultado da busca por ID ${id}:`, resultado);
+
+            if (resultado.length > 0) {
+                console.log('Livro localizado com sucesso, ID:', resultado[0]);
+                return resultado[0]; // Retorna o primeiro livro encontrado
+            } else {
+                return null; // Retorna null se nenhum livro for encontrado
+            }
         } catch (err:any) {
             console.error(`Falha ao procurar o livro de ID ${id} gerando o erro: ${err}`);
             throw err;

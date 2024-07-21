@@ -35,7 +35,7 @@ export class LivroService{
         const id = parseInt(livroData, 10);
 
         const livro = await this.livroRepository.filterLivro(id);
-        if(!livro){
+        if(livro === null){
             throw new Error("Livro não encontrado!");
         }
         console.log("Service - Filtrar", livro);
@@ -71,19 +71,5 @@ export class LivroService{
         const livro = await this.livroRepository.deleteLivro(id, title, author, publishedDate, isbn, pages, language, publisher);
         console.log("Service - Delete", livro);
         return livro;
-    }
-
-    
-    async confirmarLivro(livroData: any): Promise<Livro>{
-        const {title, author, publishedDate, isbn, pages, language, publisher} = livroData;
-        if(!title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
-            throw new Error("Informações incompletas");
-        }
-
-        const isbnEncontrado = await this.livroRepository.filtrarLivroPorIsbn(livroData.isbn);
-        if(isbnEncontrado.isbn == isbn){
-            throw new Error("isbn já cadastrado");
-        }
-        return isbnEncontrado;
     }
 }
