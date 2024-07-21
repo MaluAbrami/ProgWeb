@@ -4,6 +4,7 @@ import { LivroRepository } from "../repository/livroRepository";
 export class LivroService{
 
     livroRepository: LivroRepository = new LivroRepository();
+    livroModel : Livro = new Livro();
 
     async cadastrarLivro(livroData: any): Promise<Livro> {
         const {title, author, publishedDate, isbn, pages, language, publisher} = livroData;
@@ -45,16 +46,30 @@ export class LivroService{
         if(!id || !title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
             throw new Error("Informações incompletas");
         }
-
-        const livro = await this.livroRepository.updateLivro(id, title, author, publishedDate, isbn, pages, language, publisher);
-        console.log("Service - Update", livro);
-        return livro;
+        else if(this.livroModel.isNumber(id) || this.livroModel.isString(title) || this.livroModel.isString(author) || this.livroModel.isString(publishedDate) || this.livroModel.isString(isbn) || this.livroModel.isNumber(pages) || pages > 0 || this.livroModel.isString(language) || this.livroModel.isString(publisher)){
+            throw new Error("Informações inválidas!");
+        }
+        else{
+            const livroEncontrado = await this.livroRepository.filterLivro(id);
+            if(!livroEncontrado){
+                throw new Error("Livro não existe");
+            }
+    
+            const livro = await this.livroRepository.updateLivro(id, title, author, publishedDate, isbn, pages, language, publisher);
+            console.log("Service - Update", livro);
+            return livro;
+        }
     }
 
     async deletarLivro(livroData: any): Promise<Livro>{
         const {id, title, author, publishedDate, isbn, pages, language, publisher} = livroData;
         if(!id || !title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
             throw new Error("Informações incompletas");
+        }
+
+        const livroEncontrado = await this.livroRepository.filterLivro(id);
+        if(!livroEncontrado){
+            throw new Error("Livro não existe");
         }
 
         const livro = await this.livroRepository.deleteLivro(id, title, author, publishedDate, isbn, pages, language, publisher);

@@ -18,4 +18,12 @@ export class Livro {
         this.language = language || '';
         this.publisher = publisher || '';
     }
+
+    isString(value: any){
+        return typeof value === 'string';
+    }
+
+    isNumber(value: any){
+        return typeof value === 'number';
+    }
 }
