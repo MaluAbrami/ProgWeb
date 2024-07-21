@@ -24,6 +24,9 @@ export class LivroService{
 
     async listarTodosLivros(): Promise<Livro[]>{
         const livro = await this.livroRepository.filterAllLivro();
+        if(!livro){
+            throw new Error("Não há nenhum livro cadastrado");
+        }
         console.log("Service - Filtrar Todos", livro);
         return livro;
     }
@@ -48,10 +51,9 @@ export class LivroService{
             throw new Error("Informações incompletas");
         }
         const livroEncontrado = await this.livroRepository.filterLivro(id);
-        if(!livroEncontrado){
+        if(!livroEncontrado ){
             throw new Error("Livro não existe");
         }
-    
         const livro = await this.livroRepository.updateLivro(id, title, author, publishedDate, isbn, pages, language, publisher);
         console.log("Service - Update", livro);
         return livro;
