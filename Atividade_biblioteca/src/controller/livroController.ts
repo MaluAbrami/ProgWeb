@@ -61,7 +61,7 @@ export async function atualizarLivro(req: Request, res: Response) {
 
 export async function deletarLivro(req: Request, res: Response) {
     try{
-        const livro = await livroService.deletarLivro(req.body);
+        const livro = await livroService.deletarLivro(req.query.id);
         res.status(200).json(
             {
                 mensagem: "Livro deletado com sucesso",

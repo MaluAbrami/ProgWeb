@@ -112,6 +112,23 @@ export class LivroRepository{
         }
     }
 
+/*
+    async deleteLivro(id:number) :Promise<Livro>{
+        const query = "DELETE FROM livro.livro where id = ?;" ;
+
+        try {
+            const resultado = await executarComandoSQL(query, [id]);
+            console.log('Livro deletado com sucesso, ID: ', resultado);
+            const livro = new Livro(id, resultado.author, resultado.publishedDate, resultado.isbn, resultado.pages, resultado.language, resultado.publisher);
+            return new Promise<Livro>((resolve)=>{
+                resolve(livro);
+            })
+        } catch (err:any) {
+            console.error(`Falha ao deletar o livro de ID ${id} gerando o erro: ${err}`);
+            throw err;
+        }
+    }
+*/
     async filtrarLivroPorIsbn(isbn: string): Promise<Livro | null>{
         const query = "SELECT * FROM livro.livro where isbn = ?;";
 

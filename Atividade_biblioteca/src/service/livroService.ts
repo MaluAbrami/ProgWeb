@@ -67,7 +67,7 @@ export class LivroService{
             return livro;
         }
     }
-
+/*
     async deletarLivro(livroData: any): Promise<Livro>{
         const {id, title, author, publishedDate, isbn, pages, language, publisher} = livroData;
         if(!id || !title || !author || !publishedDate || !isbn || !pages || !language || !publisher){
@@ -80,6 +80,21 @@ export class LivroService{
         }
 
         const livro = await this.livroRepository.deleteLivro(id, title, author, publishedDate, isbn, pages, language, publisher);
+        console.log("Service - Delete", livro);
+        return livro;
+    }
+*/
+    async deletarLivro(id: any): Promise<Livro>{
+        if(!id){
+            throw new Error("Informações incompletas");
+        }
+
+        const livroEncontrado = await this.livroRepository.filterLivro(id);
+        if(!livroEncontrado){
+            throw new Error("Livro não existe");
+        }
+
+        const livro = await this.livroRepository.deleteLivro(id, livroEncontrado.title, livroEncontrado.author, livroEncontrado.publishedDate, livroEncontrado.isbn, livroEncontrado.pages, livroEncontrado.language, livroEncontrado.publisher);
         console.log("Service - Delete", livro);
         return livro;
     }
