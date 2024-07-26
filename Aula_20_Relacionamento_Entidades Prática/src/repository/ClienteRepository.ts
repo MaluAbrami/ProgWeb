@@ -46,14 +46,25 @@ export class ContaRepository{
             });
     }
 
-    async getClientePorId(id?: number): Promise<Cliente>{
+    async getClientePorId(id: number): Promise<Cliente>{
         const query = "SELECT *FROM banco.cliente WHERE ID = ?";
         try{
-            const resultado: Cliente = await executarComandoSQL(query, []);
+            const resultado: Cliente = await executarComandoSQL(query, [id]);
             console.log('Busca efetuada com sucesso:', resultado);
             return resultado;
         } catch(err){
             console.error('Erro ao buscar conta', err);
+            throw err;
+        }
+    }
+
+    async listaCliente(): Promise<Cliente[]> {
+        try{
+            const query = "SELECT * FROM banco.cliente";
+            const resultado: Cliente[] = await executarComandoSQL(query, []);
+            return resultado;
+        } catch(err){
+            console.error('Erro ao listar as contas:', err);
             throw err;
         }
     }
