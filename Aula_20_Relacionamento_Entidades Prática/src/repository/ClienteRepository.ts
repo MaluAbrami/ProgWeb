@@ -35,4 +35,14 @@ export class ContaRepository{
             throw err;
         }
     }
+
+    updateCliente(cliente: Cliente){
+        const query = 'UPDATE banco.cliente SET nome = ?, cpf = ?, data_nascimento = ? WHERE ID = ?';
+        executarComandoSQL(query, [cliente.nome, cliente.cpf, cliente.data_nascimento])
+            .then(function (resultado){
+                return resultado
+            }).catch(function (erro) {
+                return erro
+            });
+    }
 }
