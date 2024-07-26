@@ -47,9 +47,21 @@ export class ClienteRepository{
     }
 
     async getClientePorId(id: number): Promise<Cliente>{
-        const query = "SELECT *FROM banco.cliente WHERE ID = ?";
+        const query = "SELECT * FROM banco.cliente WHERE ID = ?";
         try{
             const resultado: Cliente = await executarComandoSQL(query, [id]);
+            console.log('Busca efetuada com sucesso:', resultado);
+            return resultado;
+        } catch(err){
+            console.error('Erro ao buscar conta', err);
+            throw err;
+        }
+    }
+
+    async getClientePorCpf(cpf: string): Promise<Cliente[]>{
+        const query = "SELECT * FROM banco.cliente WHERE CPF = ?";
+        try{
+            const resultado: Cliente[] = await executarComandoSQL(query, [cpf]);
             console.log('Busca efetuada com sucesso:', resultado);
             return resultado;
         } catch(err){
