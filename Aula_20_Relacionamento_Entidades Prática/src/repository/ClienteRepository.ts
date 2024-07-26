@@ -68,4 +68,16 @@ export class ContaRepository{
             throw err;
         }
     }
+
+    async deletaCliente(cliente: Cliente): Promise<any>{
+        try{
+            const query = "DELETE FROM banco.cliente WHERE id = ? AND nome = ? AND cpf = ? AND data_nascimento = ?";
+            const resultado = await executarComandoSQL(query, [cliente.id, cliente.nome, cliente.cpf, cliente.data_nascimento]);
+            console.log('Cliente deletado com sucesso:', resultado);
+            return resultado;
+        } catch(err){
+            console.error('Erro ao deletar cliente:', err);
+            throw err;
+        }
+    }
 }
