@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ProductService } from "../service/ProductService";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
-import { Body, Controller, Res, Route, Tags, TsoaResponse } from "@tsoa/runtime";
+import { Body, Controller, Post, Res, Route, Tags, TsoaResponse } from "@tsoa/runtime";
 import { ProductRequestDto } from "../model/dto/ProductRequestDto";
 
 @Route("product")
@@ -10,6 +10,7 @@ export class ProductController extends Controller{
 
 productService = new ProductService();
 
+@Post()
  async cadastrarProduto (
         @Body() dto:ProductRequestDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
