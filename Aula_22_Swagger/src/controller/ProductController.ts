@@ -17,7 +17,7 @@ productService = new ProductService();
  ): Promise<void> {
     try {
         const novoProduto = await this.productService.cadastrarProduto(dto);
-        return success(201, new BasicResponseDto("Produto criado com sucesso!", dto));
+        return success(201, new BasicResponseDto("Produto criado com sucesso!", novoProduto));
     } catch (error: any) {
         return fail(400, new BasicResponseDto(error.message, undefined));
     }
